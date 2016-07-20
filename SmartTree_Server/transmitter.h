@@ -59,7 +59,7 @@ inline void transmitChargePercent(int chargePercent) {
   SC_CONN.println(';');
 }
 
-inline void transmitEnergyBars(int num, int *bars) {
+inline void transmitEnergyBars(int num, double *bars) {
   SC_CONN.println(":B");
   SC_CONN.println(num);
   for(int i = 0; i < num; i++) {
@@ -124,9 +124,9 @@ inline void internalTransmitLogData(int cellNumber, double PowerIn, double Power
 inline void transmitLogData(int cellNumber, double voltage, double CurrentIn, double CurrentOut, double Temperature, byte error) {
   double PowerIn  = voltage*CurrentIn;
   double PowerOut = voltage*CurrentOut;
-  Serial.print(F("Power is: "));
-  Serial.println(PowerIn-PowerOut);
-  oldEnergy = updateEnergyValue(PowerIn, oldEnergy, PowerOut,500);
+  Serial.print (F("Power is: ")); //(debugging power output)
+  Serial.println (PowerIn-PowerOut);
+  oldEnergy = updateEnergyValue(PowerIn, oldEnergy, PowerOut,500); // 500 due to interrupt
   internalTransmitLogData(cellNumber, PowerIn, PowerOut, oldEnergy, voltage, CurrentIn, CurrentOut, Temperature, error);
 }
 

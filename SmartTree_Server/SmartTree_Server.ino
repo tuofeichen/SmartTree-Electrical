@@ -22,7 +22,7 @@
 #include "transmitter.h"
 //#include "debug.h"
 
-#define NUM_CELL 4
+#define NUM_CELL 1
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)

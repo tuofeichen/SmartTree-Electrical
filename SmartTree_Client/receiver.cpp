@@ -5,7 +5,8 @@
 char *rEmptyStr = "";
 
 Receiver::Receiver(Stream& stream, char *types) : s(stream) {
-  validMessageTypes = types;
+//  Serial1.begin(9600);
+    validMessageTypes = types;
 }
 
 char Receiver::type() {
@@ -26,10 +27,13 @@ char *Receiver::operator[](unsigned int n) {
 
 void Receiver::waitForBeginMessage() {
   while(s.read() != ':') { }
+//  Serial.println("Received begin message");
 }
 
 char Receiver::getMessageType() {
   while(!s.available()) { }
+  
+
   return s.read();
 }
 
@@ -55,13 +59,23 @@ bool Receiver::getDataValues() {
 bool Receiver::receiveData() {
   waitForBeginMessage();
   rType = getMessageType();
+  Serial.print(" Received type message ");
+  Serial.print(rType);
+  
   if(strchr(validMessageTypes, rType) == NULL) {
     return false;
   }
   rCount = getMessageLength();
+  Serial.print (" valid type ");
+  
   if(rCount < 0 || rCount > maxRL) {
     return false;
   }
+  
+  Serial.print (" valid data is ");
+  Serial.println (getDataValues());
+  
+  
   return getDataValues();
 }
 

@@ -16,7 +16,7 @@ SdFile file;
 UTFT GLCD(CTE70, 25, 26, 27, 28);
 UTFT_SdRaw files(&GLCD);
 
-Receiver r(Serial/*Change to Serial1 after debugging*/, "BCDEeLMNnRSW"/*these are the valid commands*/);
+Receiver r(Serial1/*Change to Serial1 after debugging*/, "BCDEeLMNnRSW"/*these are the valid commands*/);
 
 unsigned int energyBars[8] = {0};
 unsigned int energyBarLength = 0;
@@ -33,20 +33,33 @@ char *logFileNames[4] = { "Cell_0.csv", "Cell_1.csv", "Cell_2.csv", "Cell_3.csv"
 
 void setup() {
   Serial.begin(19200);
+  Serial1.begin(9600);
   Serial.setTimeout(2000);
   SDInit();
   initLCD();
-  //Serial.begin(9600);
+  
+//  Serial.begin(9600);
   //Serial.setTimeout(2000);
   
-  pinMode(9, OUTPUT);
+  pinMode(9, OUTPUT); //shutdown pin 
   digitalWrite(9, HIGH);
   r.reply(REPLY_READY);
 }
 
 void loop() {
-  
+//   Serial.println("Start receiving message");
+//   if (Serial1.available() > 0) {
+//                // read the incoming byte:
+//                byte incomingByte = Serial1.read();
+//
+//                // say what you got:
+//                Serial.print("I received: ");
+//                Serial.println(incomingByte, DEC);
+//   }
+//        
+   
   if(r.receiveData()) {
+    Serial.println("Get some data") ;
     r.reply(REPLY_SUCCESS);
     r.reply(REPLY_BUSY);
     execute();

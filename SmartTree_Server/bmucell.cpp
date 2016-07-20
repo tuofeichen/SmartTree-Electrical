@@ -72,7 +72,7 @@ bool Cell::checkErrors() volatile {
   if (IS_FLAG_CLEAR(error, TEMPERATURE_ERROR)) { // currently no temperature error, test for temperature error condition
     if (temperature > tempLimit) temp_count++;
     else if (temp_count > 0) temp_count--;
-    // this value is remembered because static local var
+    // this value is remembered because static local var (or its just a class variable now? )
 
     if (temp_count >= TriggerCount) { // if the error condition happens enough
       temp_count = 0;
