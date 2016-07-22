@@ -22,7 +22,7 @@ public:
 private:
   Stream &s;
   static const int maxRL = 10;
-  static const int maxDL = 100;
+  static const int maxDL = 1000;
   char rType;
   int rCount;
   char rData[maxRL][maxDL];

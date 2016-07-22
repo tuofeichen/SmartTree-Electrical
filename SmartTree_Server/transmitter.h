@@ -91,7 +91,7 @@ inline void internalTransmitLogData(int cellNumber, double PowerIn, double Power
   SC_CONN.println('2');
   SC_CONN.println(cellNumber);
   printDate(SC_CONN);
-  SC_CONN.print(' ');
+  SC_CONN.print(',');
   printTime(SC_CONN);
   SC_CONN.print(',');
 

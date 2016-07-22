@@ -41,8 +41,8 @@ void setup() {
 //  Serial.begin(9600);
   //Serial.setTimeout(2000);
   
-  pinMode(9, OUTPUT); //shutdown pin 
-  digitalWrite(9, HIGH);
+  pinMode(14, OUTPUT); //shutdown pin 
+  digitalWrite(14, HIGH);
   r.reply(REPLY_READY);
 }
 
@@ -59,7 +59,7 @@ void loop() {
 //        
    
   if(r.receiveData()) {
-    Serial.println("Get some data") ;
+//    Serial.println("Get some data") ;
     r.reply(REPLY_SUCCESS);
     r.reply(REPLY_BUSY);
     execute();
