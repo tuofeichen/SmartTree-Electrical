@@ -61,15 +61,15 @@ private:
   
   // Error condition values
   static const double vHighLimit = 40;
-  static const double vLowLimit = 35.5;
-  static const double cLimit = 2;
+  static const double vLowLimit = 34.5;
+  static const double cLimit = 3;
   static const double cLowLimit = 1.0;
   static const int tempLimit = 50;
   
   // Recovery condition values
   static const double vHighRecover = 39;
   static const double vLowRecover = 36;
-  static const double cRecover = 1.5;
+  static const double cRecover = 2.5;
   static const int tempRecover = 45;
   
   // measurements

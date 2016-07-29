@@ -58,7 +58,8 @@ bool displayError(volatile Cell cells[], int numel) {
 
   // all four has issues
   if(temperatureCount == 4) {
-    if(preventRefresh != TEMP_ERROR_H) {
+    if ((preventRefresh != TEMP_ERROR_H)) { // debug transmission 
+    
       preventRefresh = TEMP_ERROR_H;
       transmitErrorNumber(TEMP_ERROR_H);
 //      transmitErrorMessage(3, OverheatingString, CannotChargeString, SorryString);

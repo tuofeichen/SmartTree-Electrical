@@ -5,8 +5,8 @@
 
 #include "receiver.h"
 #include "tft.h"
-#include "log.h"
-#include <stream.h>
+#include "log.h"v
+#include <stream.h>[p]
 #include <string.h>
 #include <stdlib.h>
 
@@ -35,13 +35,17 @@ void setup() {
   Serial.begin(19200);
   Serial1.begin(9600);
   Serial.setTimeout(2000);
-  SDInit();
+//  SDInit();
+  initSD();
   initLCD();
   
 //  Serial.begin(9600);
   //Serial.setTimeout(2000);
+ 
+  pinMode(9, OUTPUT);   //  screen on/off pin
+  digitalWrite(9, HIGH);
   
-  pinMode(14, OUTPUT); //shutdown pin 
+  pinMode(14, OUTPUT);  //  shutdown pin 
   digitalWrite(14, HIGH);
   r.reply(REPLY_READY);
 }

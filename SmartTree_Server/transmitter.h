@@ -63,7 +63,10 @@ inline void transmitEnergyBars(int num, double *bars) {
   SC_CONN.println(":B");
   SC_CONN.println(num);
   for(int i = 0; i < num; i++) {
-    SC_CONN.println(bars[num]);
+//    Serial.println(*bars);
+    SC_CONN.println(*bars);
+    bars++;
+//    SC_CONN.println(bars[num]);
   }
   SC_CONN.println(';');
 }
@@ -124,9 +127,10 @@ inline void internalTransmitLogData(int cellNumber, double PowerIn, double Power
 inline void transmitLogData(int cellNumber, double voltage, double CurrentIn, double CurrentOut, double Temperature, byte error) {
   double PowerIn  = voltage*CurrentIn;
   double PowerOut = voltage*CurrentOut;
-  Serial.print (F("Power is: ")); //(debugging power output)
-  Serial.println (PowerIn-PowerOut);
-  oldEnergy = updateEnergyValue(PowerIn, oldEnergy, PowerOut,500); // 500 due to interrupt
+//  Serial.print (F("Power is: ")); //(debugging power output)
+//  Serial.println (PowerIn-PowerOut);
+
+//  oldEnergy = updateEnergyValue(PowerIn, oldEnergy, PowerOut,500); // 500 due to interrupt (this shouldn't be used -> use tft.cpp instead
   internalTransmitLogData(cellNumber, PowerIn, PowerOut, oldEnergy, voltage, CurrentIn, CurrentOut, Temperature, error);
 }
 

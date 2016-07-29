@@ -28,7 +28,7 @@ extern double oldEnergy;
 
 extern byte energyAddress;
 extern int oldTime;
-extern int totalEnergy;
+extern float totalEnergy;
 
 extern byte preventRefresh;
 

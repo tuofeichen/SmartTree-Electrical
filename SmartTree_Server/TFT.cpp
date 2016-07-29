@@ -31,7 +31,8 @@ void updateEnergyBars() {
   // first cycle means the flash memory is current incomplete; i.e. the first week
   static bool firstCycle = true;
   double values[9];
-
+  Serial.print ("Updating Energy bar!!");
+  
   Serial1.println(":B");
   if (energyAddress < 8 && firstCycle) { // if there are not enough bars to fill the meter
     for(int i = 0; i < energyAddress; i++) {
@@ -43,8 +44,10 @@ void updateEnergyBars() {
     for(int i = 0; i < 8; i++) {
       values[i] = dueFlashStorage.read((energyAddress - 8 + 50 + i) % 50); // wrap around, ensure positive
     }
-
-    values[8] = oldEnergy;
+    
+    values[8] = oldEnergy;    
+//    Serial.println(oldEnergy);
+    
     transmitEnergyBars(9, values);
   }
 }
@@ -65,10 +68,25 @@ int updateScreenValues(int powerIn, int powerOut) {
   if (time < 0) {
     time += 60;
   }
-  int energyDifference = (powerIn - powerOut)* time / 3600; // right ?
-  energy += energyDifference;
-  transmitPowerData(powerIn, energy, powerOut);
 
+  
+  double energyDifference = (float) (powerIn - powerOut) * ((float)time / 3600.0); // right ?
+  
+  Serial.print("Energy difference is ");
+  Serial.println(energyDifference);
+
+  energy += energyDifference;
+  
+  if (powerIn< 20)
+    transmitPowerData(0, energy, powerOut);
+  else if(powerOut<20)
+    transmitPowerData(powerIn, energy, 0);
+  else
+    transmitPowerData(powerIn, energy, powerOut);
+ 
+  Serial.print("Energy  is ");
+  Serial.println(energy);
+  
   oldTime += time;
   if (oldTime >= 60) {
     oldTime -= 60;

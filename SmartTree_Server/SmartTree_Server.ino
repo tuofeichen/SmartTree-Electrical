@@ -22,7 +22,7 @@
 #include "transmitter.h"
 //#include "debug.h"
 
-#define NUM_CELL 4
+#define NUM_CELL 1
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
@@ -46,7 +46,7 @@ double oldEnergy = 0;
 
 byte energyAddress = 0;
 int oldTime = 0;
-int totalEnergy = 0;
+float totalEnergy = 0;
 
 byte preventRefresh = 0;
 
@@ -59,27 +59,30 @@ void setup() {
   initScreen();
   Cell::setup();
 
-  //writeLogFileHeader(LOG_FILE_NAME);
+//  writeLogFileHeader(LOG_FILE_NAME);
 
   // TODO fine tune timing
   // TODO the interval for whichever interrupt updates the energy should be made a constant
 
   // TODO set priorities for ints
-  Timer.getAvailable().attachInterrupt(setLogDataFlag).start(1000000);
-  Timer.getAvailable().attachInterrupt(setUpdateScreenFlag).start(2000000);
-  Timer.getAvailable().attachInterrupt(globalBatteryCheck).start(100000);
+  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (1000000);
+  Timer.getAvailable().attachInterrupt(setUpdateScreenFlag).start (2000000);
+  Timer.getAvailable().attachInterrupt(globalBatteryCheck).start  (100000);
 }
 
 void loop() {
   if(IN_NORMAL_MODE_STRICT(mode)) {
+//    Serial.println("BMS in Normal Mode");
     preventRefresh = 0;
     if(updateScreenFlag) {
       updateScreenFlag = false;
+      cells[logDataCurrentCell].logData(Serial); // print out cell data
       updateScreen();
       updateScreenUponDateChange();
     }
 
   } else if(IN_ERROR_MODE_STRICT(mode)) {
+//    Serial.println("BMS in Error Mode");
     if(!displayError(cells, NUM_CELL) && updateScreenFlag) { // if big screen is not
       updateScreenFlag = false;
       updateScreen();
@@ -97,17 +100,18 @@ void loop() {
     Serial.println();
     printTime(Serial);                         // print out time
     Serial.println();
-    cells[logDataCurrentCell].logData(Serial); // print out cell data
+//    cells[logDataCurrentCell].logData(Serial); // print out cell data
 
     if(IS_FLAG_SET(mode, ERROR_FLAG)) {        // pritn out error
       cells[logDataCurrentCell].logErrors(Serial);
     }
-
+    
     transmitLogData(logDataCurrentCell, cells[logDataCurrentCell].getVoltage(), cells[logDataCurrentCell].getCurrentIn(),
                 cells[logDataCurrentCell].getCurrentOut(), cells[logDataCurrentCell].getTemperature(),
                 cells[logDataCurrentCell].getErrorFlags());
     // transmit to the screen
   }
+  
 }
 
 void globalBatteryCheck() {
