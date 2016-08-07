@@ -27,7 +27,7 @@ void initSD();
 void initLCD();
 void updateBattery(int chargePercent);
 void updateEnergyBars(unsigned int *bars, unsigned int length);
-void updateScreenValues(int powerIn, int oldEnergy, int powerOut);
+void updateScreenValues(int powerIn, int oldEnergy, int powerOut, int totalEnergy);
 void clearEnergyBars();
 void drawErrorBox();
 void setupPrintMinorError();

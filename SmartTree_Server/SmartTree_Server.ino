@@ -68,6 +68,7 @@ void setup() {
   Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (1000000);
   Timer.getAvailable().attachInterrupt(setUpdateScreenFlag).start (2000000);
   Timer.getAvailable().attachInterrupt(globalBatteryCheck).start  (100000);
+
 }
 
 void loop() {

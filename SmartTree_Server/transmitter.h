@@ -71,12 +71,13 @@ inline void transmitEnergyBars(int num, double *bars) {
   SC_CONN.println(';');
 }
 
-inline void transmitPowerData(int powerIn, int energy, int powerOut) {
+inline void transmitPowerData(int powerIn, int energy, int powerOut, int totalEnergy) {
   SC_CONN.println(":D");
-  SC_CONN.println('3');
+  SC_CONN.println('4');
   SC_CONN.println(powerIn);
   SC_CONN.println(energy);
   SC_CONN.println(powerOut);
+  SC_CONN.println(totalEnergy);
   SC_CONN.println(';');
 }
 

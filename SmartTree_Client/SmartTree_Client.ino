@@ -21,7 +21,7 @@ Receiver r(Serial1/*Change to Serial1 after debugging*/, "BCDEeLMNnRSW"/*these a
 unsigned int energyBars[8] = {0};
 unsigned int energyBarLength = 0;
 unsigned int batteryMeter = 0;
-int powerIn, oldEnergy, powerOut;
+int powerIn, oldEnergy, powerOut, totalEnergy;
 
 bool isCardPresent = false;
 
@@ -90,12 +90,15 @@ void execute() {
       GLCD.fillRect(570, 200, 799, 280);
       break;
     case 'D': // draw normal screen data
-      if(r.size() != 3) break;
+    
+      if(r.size() != 4) break;
       powerIn = atoi(r[0]);
       oldEnergy = atoi(r[1]);
       powerOut = atoi(r[2]);
-      updateScreenValues(powerIn, oldEnergy, powerOut);
+      totalEnergy = atoi(r[3]);
+      updateScreenValues(powerIn, oldEnergy, powerOut,totalEnergy);
       break;
+      
     case 'E': // draw error box and msg
       drawErrorBox();
       for(int i = 0; i < r.size(); i++) {
@@ -120,7 +123,7 @@ void execute() {
       break;
     case 'R': // refresh normal screen
       files.load(0, 0, 800, 480, fname440, 1);
-      updateScreenValues(powerIn, oldEnergy, powerOut);
+      updateScreenValues(powerIn, oldEnergy, powerOut, totalEnergy);
       updateEnergyBars(energyBars, energyBarLength);
       updateBattery(batteryMeter);
       break;

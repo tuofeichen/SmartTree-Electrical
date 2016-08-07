@@ -31,8 +31,6 @@ void updateEnergyBars() {
   // first cycle means the flash memory is current incomplete; i.e. the first week
   static bool firstCycle = true;
   double values[9];
-  Serial.print ("Updating Energy bar!!");
-  
   Serial1.println(":B");
   if (energyAddress < 8 && firstCycle) { // if there are not enough bars to fill the meter
     for(int i = 0; i < energyAddress; i++) {
@@ -53,7 +51,9 @@ void updateEnergyBars() {
 }
 
 void updateFlash() {
-  dueFlashStorage.write(energyAddress, oldEnergy);
+  
+  dueFlashStorage.write(energyAddress, oldEnergy * 3600);
+//  Serial.println(oldEnergy * 3600)l
   energyAddress++;
   if(energyAddress > 50) {
     energyAddress = 0;
@@ -64,38 +64,35 @@ void updateFlash() {
 
 int updateScreenValues(int powerIn, int powerOut) {
   double energy = oldEnergy;
-  int time = rtc_clock.get_seconds() - oldTime;
+  int time = rtc_clock.get_seconds() - oldTime; // this should be the right time
+  
   if (time < 0) {
     time += 60;
   }
 
-  
-  double energyDifference = (float) (powerIn - powerOut) * ((float)time / 3600.0); // right ?
-  
-  Serial.print("Energy difference is ");
-  Serial.println(energyDifference);
-
-  energy += energyDifference;
-  
+  double energyDifference = (float) (powerIn - powerOut) * ((float)time / 3600.0); 
+  energy += energyDifference;       //update daily energy difference
+  totalEnergy += energyDifference;  //update total enegy difference
+   
   if (powerIn< 20)
-    transmitPowerData(0, energy, powerOut);
+    transmitPowerData(0, energy, powerOut, totalEnergy);
   else if(powerOut<20)
-    transmitPowerData(powerIn, energy, 0);
+    transmitPowerData(powerIn, energy, 0, totalEnergy);
   else
-    transmitPowerData(powerIn, energy, powerOut);
- 
-  Serial.print("Energy  is ");
-  Serial.println(energy);
+    transmitPowerData(powerIn, energy, powerOut,totalEnergy);
+  
   
   oldTime += time;
   if (oldTime >= 60) {
     oldTime -= 60;
   }
-  totalEnergy += energyDifference;
+ 
   //GLCD.printNumI(totalEnergy / 1000, 620, 370);
   return energy;
 }
 
 int getVirtualDay() {
+  
   return rtc_clock.get_seconds();
+  
 }

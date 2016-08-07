@@ -87,7 +87,7 @@ void clearEnergyBars() {
   GLCD.fillRect(PBX, PBY, 300, PBLIMIT);
 }
 
-void updateScreenValues(int powerIn, int oldEnergy, int powerOut) {
+void updateScreenValues(int powerIn, int oldEnergy, int powerOut, int totalEnergy) {
   GLCD.setFont(BigFont);
   GLCD.setBackColor(VGA_WHITE);
   GLCD.setColor(VGA_GREEN);
@@ -97,6 +97,8 @@ void updateScreenValues(int powerIn, int oldEnergy, int powerOut) {
   GLCD.printNumI(oldEnergy, 260, 140);
   GLCD.printNumI(powerIn, 260, 173);
   GLCD.printNumI(powerOut, 260, 203);
+  GLCD.printNumI(totalEnergy, 620, 370);
+
 }
 
 void drawErrorBox() {

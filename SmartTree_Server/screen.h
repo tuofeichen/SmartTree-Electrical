@@ -15,6 +15,7 @@ inline void initScreen() {
 inline void updateScreen() {
   updateBattery();
   oldEnergy = updateScreenValues(voltage * currentIn, voltage * currentOut);
+  
 }
 
 inline void updateScreenUponDateChange() { // replace this function when sleep mode is completed
