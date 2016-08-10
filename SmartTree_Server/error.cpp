@@ -4,8 +4,8 @@
 #include "transmitter.h"
 const char *OverheatingString = "Our batteries are overheating!";
 const char *SorryString = "Sorry for the inconvenience.";
-const char *LowBatteryString = "Low battery. We cannot charge your device.";
-const char *CannotChargeString = LowBatteryString + 13; // "We cannot charge your device"
+const char *LowBatteryString = "Low battery.";
+const char *CannotChargeString = "We cannot charge your device."; // "We cannot charge your device"
 
 char partialChargingString[] = "*/4 cells have";
 char partialChargingString2[] = "stopped charging.";
@@ -69,10 +69,13 @@ bool displayError(volatile Cell cells[], int numel) {
 //      GLCD.print(SorryString, 120, 180);
     }
     return true;
-  } else if(undervoltageCount == 4) {
+  } else if(undervoltageCount > 0) {
+    
     if(preventRefresh != UNDERVOLTAGE_ERROR_H) {
-      preventRefresh = UNDERVOLTAGE_ERROR_H;
+//      preventRefresh = UNDERVOLTAGE_ERROR_H;
       transmitErrorNumber(UNDERVOLTAGE_ERROR_H);
+      Serial.println("transmitting error number");
+      transmitErrorMessage(3, LowBatteryString, CannotChargeString, SorryString);
 //      drawErrorBox();
 //      GLCD.print(LowBatteryString, 120, 120);
 //      GLCD.print(SorryString, 120, 150);

@@ -99,10 +99,16 @@ void execute() {
       updateScreenValues(powerIn, oldEnergy, powerOut,totalEnergy);
       break;
       
-    case 'E': // draw error box and msg
+    case 'E': // draw error box and msg 
       drawErrorBox();
-      for(int i = 0; i < r.size(); i++) {
-         GLCD.print(r[i], 120, 120 + 32 * i);
+      for(int i = 0; i < r.size(); i++) { // print out error message
+               
+         char* temp = new char [strlen(r[i])];
+         strcpy(temp, r[i]);
+         int len = strlen(temp);
+         temp[len-1] = ' '; //(null terminating string produce random characters (already handled on the UTFT side)
+         
+         GLCD.print(temp, 120, 120 + 32 * i);
       }
       break;
       // TODO error numbers instead of msgs
@@ -118,6 +124,10 @@ void execute() {
     case 'N': // draw notice message
       setupPrintMinorError();
       for(int i = 0; i < r.size(); i++) {
+         char* temp = new char [strlen(r[i])];
+         strcpy(temp, r[i]);
+         int len = strlen(temp);
+         temp[len-1] = ' '; //(null terminating string produce random characters (already handled on the UTFT side)
          GLCD.print(r[i], 570, 200 + 20 * i);
       }
       break;
@@ -128,7 +138,7 @@ void execute() {
       updateBattery(batteryMeter);
       break;
     case 'S': // sleep
-      digitalWrite(9, LOW);
+      digitalWrite(9, LOW); // chip enable pin
       break;
     case 'W': // wake
       digitalWrite(9, HIGH);
