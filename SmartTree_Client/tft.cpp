@@ -36,8 +36,9 @@ void initLCD() {
   GLCD.setFont(SmallFont);
 
   // Draw Background
-  char fname440[] = "sc.RAW";
+  char fname440[] = "sc.raw";
   GLCD.clrScr();
+  delay(100);
   files.load(0, 0, 800, 480, fname440, 1);
   Serial.println(F("LCD Initialised."));
 }

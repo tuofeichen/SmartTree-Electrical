@@ -6,9 +6,10 @@
 #include "log.h"
 #include "globals.h"
 
+
 inline void initScreen() {
   //initSD();
-  //initLCD(); 
+  //initLCD();
   initRTC();
 }
 

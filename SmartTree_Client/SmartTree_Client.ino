@@ -2,14 +2,13 @@
 #include <SdFat.h>
 #include <UTFT.h>
 #include <UTFT_SdRaw.h>
-
+#include <DueTimer.h>
 #include "receiver.h"
 #include "tft.h"
-#include "log.h"v
+#include "log.h"
 #include <stream.h>[p]
 #include <string.h>
 #include <stdlib.h>
-
 
 SdFat sd;
 SdFile file;
@@ -19,18 +18,19 @@ UTFT_SdRaw files(&GLCD);
 Receiver r(Serial1/*Change to Serial1 after debugging*/, "BCDEeLMNnRSW"/*these are the valid commands*/);
 
 unsigned int energyBars[8] = {0};
-unsigned int energyBarLength = 0;
+unsigned int energyBarLength = 1;
 unsigned int batteryMeter = 0;
 int powerIn, oldEnergy, powerOut, totalEnergy;
 
 bool isCardPresent = false;
-
-char fname440[] = "sc.RAW";
-
+char fname440[] = "smarttree.raw";
 char *logFileNames[4] = { "Cell_0.csv", "Cell_1.csv", "Cell_2.csv", "Cell_3.csv" };
 
-// TODO write function to write headers for log files if log files are not present
+volatile int hb = 0;
+volatile int hb_prev = 0;
 
+
+// TODO write function to write headers for log files if log files are not present
 void setup() {
   Serial.begin(19200);
   Serial1.begin(9600);
@@ -38,11 +38,11 @@ void setup() {
 //  SDInit();
   initSD();
   initLCD();
-  
-//  Serial.begin(9600);
-  //Serial.setTimeout(2000);
- 
-  pinMode(9, OUTPUT);   //  screen on/off pin
+// watchdog timer to be 4.5 secs
+  uint32_t wdp_ms = 1152 ;
+  WDT_Enable( WDT, 0x2000 | wdp_ms | ( wdp_ms << 16 ));
+// 
+  pinMode(9, OUTPUT);   //  screen on /off pin
   digitalWrite(9, HIGH);
   
   pinMode(14, OUTPUT);  //  shutdown pin 
@@ -51,7 +51,8 @@ void setup() {
 }
 
 void loop() {
-//   Serial.println("Start receiving message");
+  WDT_Restart(WDT);
+   Serial.println("Start receiving message");
 //   if (Serial1.available() > 0) {
 //                // read the incoming byte:
 //                byte incomingByte = Serial1.read();
@@ -60,10 +61,13 @@ void loop() {
 //                Serial.print("I received: ");
 //                Serial.println(incomingByte, DEC);
 //   }
-//        
-   
+//    
+//  watchdogReset();    
+
+//delay(1000);
+
   if(r.receiveData()) {
-//    Serial.println("Get some data") ;
+    Serial.println("Get some data") ;
     r.reply(REPLY_SUCCESS);
     r.reply(REPLY_BUSY);
     execute();
@@ -86,9 +90,17 @@ void execute() {
       updateEnergyBars(energyBars, energyBarLength);
       break;
     case 'C': // clear notice msg area
-      GLCD.setColor(VGA_WHITE);
-      GLCD.fillRect(570, 200, 799, 280);
+//      GLCD.setColor(VGA_WHITE);
+//      GLCD.fillRect(570, 200, 799, 280);
+      // refresh the screen instea
+//      initLCD();
+
+      GLCD.clrScr();
+      files.load(0, 0, 800, 480, "sc.RAW", 1);
+      
+      Serial.println(F("LCD Initialised."));
       break;
+      
     case 'D': // draw normal screen data
     
       if(r.size() != 4) break;
@@ -145,3 +157,4 @@ void execute() {
       break;
   }
 }
+

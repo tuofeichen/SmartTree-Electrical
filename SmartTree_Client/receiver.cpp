@@ -91,7 +91,6 @@ bool Receiver::receiveData() {
   Serial.println(rCount);
   
   if(rCount < 0 || rCount > maxRL) {
-    
     return false;
   }
   

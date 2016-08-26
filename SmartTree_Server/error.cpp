@@ -57,31 +57,31 @@ bool displayError(volatile Cell cells[], int numel) {
   }
 
   // all four has issues
-  if(temperatureCount == 4) {
+  if(temperatureCount > 3) {
     if ((preventRefresh != TEMP_ERROR_H)) { // debug transmission 
     
       preventRefresh = TEMP_ERROR_H;
       transmitErrorNumber(TEMP_ERROR_H);
-//      transmitErrorMessage(3, OverheatingString, CannotChargeString, SorryString);
+      transmitErrorMessage(3, OverheatingString, CannotChargeString, SorryString);
 //      drawErrorBox();
 //      GLCD.print(OverheatingString, 120, 120);
 //      GLCD.print(CannotChargeString, 120, 150);
 //      GLCD.print(SorryString, 120, 180);
     }
     return true;
-  } else if(undervoltageCount > 0) {
+  } else if(undervoltageCount > 3) {
     
     if(preventRefresh != UNDERVOLTAGE_ERROR_H) {
-//      preventRefresh = UNDERVOLTAGE_ERROR_H;
+      preventRefresh = UNDERVOLTAGE_ERROR_H;
       transmitErrorNumber(UNDERVOLTAGE_ERROR_H);
-      Serial.println("transmitting error number");
       transmitErrorMessage(3, LowBatteryString, CannotChargeString, SorryString);
+      
 //      drawErrorBox();
 //      GLCD.print(LowBatteryString, 120, 120);
 //      GLCD.print(SorryString, 120, 150);
     }
     return true;
-  } else if(temperatureCount) {
+  } else if(temperatureCount) { // this can be unnecessary (should all be handled on temperatureCount > 3
     if(preventRefresh != TEMP_ERROR_L) {
       preventRefresh = TEMP_ERROR_L;
       transmitErrorNumber(TEMP_ERROR_L);
@@ -95,6 +95,7 @@ bool displayError(volatile Cell cells[], int numel) {
     if(preventRefresh != OVERCURRENT_OUT_ERROR_H) {
       preventRefresh = OVERCURRENT_OUT_ERROR_H;
       transmitErrorNumber(OVERCURRENT_OUT_ERROR_H, overcurrentOutCount);
+      
 //      drawErrorBox();
 //      overloaded3[18] = (overcurrentOutCount == 4) ? '1' : ' ';
 //      overloaded3[19] = (overcurrentOutCount == 4) ? '0' : '7';
@@ -104,7 +105,7 @@ bool displayError(volatile Cell cells[], int numel) {
 //      GLCD.print("Normal operation is expected to resume shortly.", 120, 180);
     }
     return true;
-  } else if(overcurrentOutCount) {
+  } else if(overcurrentOutCount) { 
     if(preventRefresh != OVERCURRENT_OUT_ERROR_L) {
       preventRefresh = OVERCURRENT_OUT_ERROR_L;
       transmitErrorNumber(OVERCURRENT_OUT_ERROR_L, overcurrentOutCount);
@@ -115,7 +116,7 @@ bool displayError(volatile Cell cells[], int numel) {
 //      GLCD.print("Please unplug large devices such as laptop chargers.", 120, 150);
 //      GLCD.print("Normal operation is expected to resume shortly.", 120, 180);
     }
-    return true;
+    return false;
   } else if(undervoltageCount) {
     if(preventRefresh != UNDERVOLTAGE_ERROR_L) {
       preventRefresh = UNDERVOLTAGE_ERROR_L;

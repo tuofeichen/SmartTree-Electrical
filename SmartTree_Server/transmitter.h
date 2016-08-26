@@ -39,6 +39,14 @@ inline void transmitNoticeMessage(int n, ...) {
   SC_CONN.println(';');
 }
 
+
+inline void transmitClear() {
+  SC_CONN.println(":C\n1");
+//  SC_CONN.println(errorNumber);
+  SC_CONN.println('1'); //dummy data
+  SC_CONN.println(';');
+}
+
 inline void transmitErrorNumber(int errorNumber, int param = 0) {
   SC_CONN.println(":e\n2");
   SC_CONN.println(errorNumber);
