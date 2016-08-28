@@ -1,17 +1,25 @@
 // latest version
 
 #include <SPI.h>
+// screen include
 #include <SdFat.h>
 #include <UTFT.h>
 #include <UTFT_SdRaw.h>
+
+// rtc include 
 #include <rtc_clock.h>
 
+// due flash storage 
 #include <DueFlashStorage.h>
 #include <efc.h>
 #include <flash_efc.h>
 
 #include <math.h>
+
+// external library for interrupt 
 #include <DueTimer.h>
+
+// library we wrote 
 #include "screen.h"
 #include "constants.h"
 #include "bmucell.h"
@@ -22,11 +30,13 @@
 #include "transmitter.h"
 //#include "debug.h"
 
-#define NUM_CELL 1
+
+#define NUM_CELL 1 
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
 };
+
 
 //SdFat sd;
 //SdFile file;
@@ -36,6 +46,7 @@ volatile Cell cells[] = {
 
 DueFlashStorage dueFlashStorage; // Due own flash storage for the energy bar
 RTC_clock rtc_clock(XTAL);       // Due internal RTC for counting date
+
 
 byte mode = 0;                   // state machine (normal, error, sleep, debug) // sleep and debug not implemented. 
 
