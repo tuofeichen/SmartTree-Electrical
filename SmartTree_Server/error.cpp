@@ -64,7 +64,7 @@ bool displayError(volatile Cell cells[], int numel) {
       
       Serial.println("Temperature Error");
       preventRefresh = TEMP_ERROR_H;
-      transmitErrorNumber(TEMP_ERROR_H);
+      transmitErrorNumber(TEMP_ERROR_H,temperatureCount);
       transmitErrorMessage(3, OverheatingString, CannotChargeString, SorryString);
 //      drawErrorBox();
 //      GLCD.print(OverheatingString, 120, 120);
@@ -94,7 +94,7 @@ bool displayError(volatile Cell cells[], int numel) {
 //      GLCD.print(SorryString, 120, 180);
     }
     return true;
-  } else if(overcurrentOutCount >= 1) {
+  } else if(overcurrentOutCount >= 2) {
     if(preventRefresh != OVERCURRENT_OUT_ERROR_H) {
       preventRefresh = OVERCURRENT_OUT_ERROR_H;
       Serial.println("Current error H");
