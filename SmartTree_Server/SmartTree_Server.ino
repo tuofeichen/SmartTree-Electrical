@@ -31,7 +31,7 @@
 //#include "debug.h"
 
 
-#define NUM_CELL 1 
+#define NUM_CELL 1
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
@@ -105,7 +105,7 @@ void loop() {
     }
 
   } else if(IN_ERROR_MODE_STRICT(mode)) {
-//    Serial.println("BMS in Error Mode");
+ 
     if(!displayError(cells, NUM_CELL) && updateScreenFlag) { // display error once (displayError is the error handling function) 
       updateScreenFlag = false;
       updateScreen();
@@ -132,6 +132,7 @@ void loop() {
     }
     
     // actual transmission
+    // Serial.println("Transmitting!");
     transmitLogData(logDataCurrentCell, cells[logDataCurrentCell].getVoltage(), cells[logDataCurrentCell].getCurrentIn(),
                 cells[logDataCurrentCell].getCurrentOut(), cells[logDataCurrentCell].getTemperature(),
                 cells[logDataCurrentCell].getErrorFlags());

@@ -56,14 +56,14 @@ private:
   unsigned int cell_num;
   
   // Error trigger and recovery values
-  static const unsigned int TriggerCount = 10;
+  static const unsigned int TriggerCount = 20;
   static const unsigned int CycleCount = 100;
   
   // Error condition values
   static const double vHighLimit = 40;
-  static const double vLowLimit = 36;
-  static const double cLimit = 2;
-  static const double cLowLimit = 1.0;
+  static const double vLowLimit = 35;
+  static const double cLimit = 0.1;
+  static const double cLowLimit = 0.0;
   static const int tempLimit = 50;
   
   // Recovery condition values
