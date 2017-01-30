@@ -26,11 +26,7 @@
 #define RO3 9
 #define RI4 12
 #define RO4 11
-
-#define RESET_CELL1 4
-#define RESET_CELL2 3
-#define RESET_CELL3 5
-#define RESET_CELL4 6
+#define RSCREEN 3
 
 #define SD_CHIP_SELECT  53
 

@@ -51,26 +51,25 @@ private:
   static int relayInPin(unsigned int cell);
   static int relayOutPin(unsigned int cell);
 private:
-  // NOTE: in later versions of arduino, "static const double" must be replaced with "static constexpr double"
   static const double Vref = 3.3;
   static const double Voe = 2.5;
   unsigned int cell_num;
   
   // Error trigger and recovery values
-  static const unsigned int TriggerCount = 10;
+  static const unsigned int TriggerCount = 20;
   static const unsigned int CycleCount = 100;
   
   // Error condition values
   static const double vHighLimit = 40;
-  static const double vLowLimit = 36;
-  static const double cLimit = 5;
-  static const double cLowLimit = 1.0;
+  static const double vLowLimit = 35;
+  static const double cLimit = 4;
+  static const double cLowLimit = 0.0;
   static const int tempLimit = 50;
   
   // Recovery condition values
   static const double vHighRecover = 39;
   static const double vLowRecover = 36.5;
-  static const double cRecover = 2.5;
+  static const double cRecover = 1.5;
   static const int tempRecover = 45;
   
   // measurements

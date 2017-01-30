@@ -8,7 +8,7 @@ bool pollDebugPin() {
 }
 
 void enterDebugMode(Print &out) {
-  SET_FLAG(mode, DEBUG_FLAG);
+  SET_FLAG(mode, DEBUG_MODE);
   out.println("DEBUG");
 }
 
@@ -84,7 +84,7 @@ void debug(Stream &in, Print& out) {
     break;
   case 'e':
     out.println("Exit");
-    CLEAR_FLAG(mode, DEBUG_FLAG);
+    CLEAR_FLAG(mode, DEBUG_MODE);
     break;
   default:
     if(command > ' ') {

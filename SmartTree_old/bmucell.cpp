@@ -11,16 +11,8 @@ void Cell::setup() {
   pinMode(ADDR3, OUTPUT);
   analogReadResolution(12);
 
-  pinMode(RESET_CELL1, OUTPUT);
-  pinMode(RESET_CELL2, OUTPUT);
-  pinMode(RESET_CELL3, OUTPUT);
-  pinMode(RESET_CELL4, OUTPUT);
-  digitalWrite(RESET_CELL1,HIGH); // reset is for the transistor control of the 5V supply to CMU
-  digitalWrite(RESET_CELL2,HIGH);
-  digitalWrite(RESET_CELL3,HIGH);
-  digitalWrite(RESET_CELL4,HIGH);
-  
-
+  pinMode(RSCREEN, OUTPUT);
+  digitalWrite(RSCREEN, HIGH);
 }
 
 Cell::Cell(unsigned int cellnum) {

@@ -3,13 +3,12 @@
 
 #include <arduino.h>
 #include <stdarg.h>
-#include "util.h"
 
 #define SLEEP 'S'
 #define WAKE 'W'
 
 // Change to Serial1 after debugging
-#define SC_CONN Serial1 
+#define SC_CONN Serial1
 
 inline void transmitMessage(char msg) {
   SC_CONN.print(':');
@@ -41,7 +40,7 @@ inline void transmitNoticeMessage(int n, ...) {
 }
 
 
-inline void transmitClearMessage() {
+inline void transmitClear() {
   SC_CONN.println(":C\n1");
 //  SC_CONN.println(errorNumber);
   SC_CONN.println('1'); //dummy data
@@ -81,7 +80,6 @@ inline void transmitEnergyBars(int num, double *bars) {
 }
 
 inline void transmitPowerData(int powerIn, int energy, int powerOut, int totalEnergy) {
-  Serial.println("transmit Power data?");
   SC_CONN.println(":D");
   SC_CONN.println('4');
   SC_CONN.println(powerIn);
@@ -98,7 +96,7 @@ inline double updateEnergyValue(double PowerIn, double OldEnergy, double PowerOu
   return energy;
 }
 
-inline void internalTransmitLogData(int cellNumber, double PowerIn, double PowerOut, 
+inline void internalTransmitLogData(int cellNumber, double PowerIn, double PowerOut, double OldEnergy,
               double voltage, double CurrentIn, double CurrentOut,
               double Temperature, byte error) {
   SC_CONN.println(":L");
@@ -115,7 +113,7 @@ inline void internalTransmitLogData(int cellNumber, double PowerIn, double Power
   SC_CONN.print(PowerOut);
   SC_CONN.print(',');
 
-  SC_CONN.print(-1); // originally for transmit daily energy (don't need)
+  SC_CONN.print(OldEnergy);
   SC_CONN.print(',');
 
   SC_CONN.print(voltage);
@@ -141,7 +139,8 @@ inline void transmitLogData(int cellNumber, double voltage, double CurrentIn, do
 //  Serial.print (F("Power is: ")); //(debugging power output)
 //  Serial.println (PowerIn-PowerOut);
 
-  internalTransmitLogData(cellNumber, PowerIn, PowerOut, voltage, CurrentIn, CurrentOut, Temperature, error);
+//  oldEnergy = updateEnergyValue(PowerIn, oldEnergy, PowerOut,500); // 500 due to interrupt (this shouldn't be used -> use tft.cpp instead
+  internalTransmitLogData(cellNumber, PowerIn, PowerOut, oldEnergy, voltage, CurrentIn, CurrentOut, Temperature, error);
 }
 
 #endif

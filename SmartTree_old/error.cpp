@@ -3,6 +3,8 @@
 #include "globals.h"
 #include "transmitter.h"
 const char *OverheatingString = "Our batteries are overheating!";
+const char *OvercurrentString = "You're using too much power!";
+const char *UnplugString = "Please unplug some of your devices!";
 const char *SorryString = "Sorry for the inconvenience.";
 const char *LowBatteryString = "Low battery.";
 const char *CannotChargeString = "We cannot charge your device."; // "We cannot charge your device"
@@ -59,9 +61,10 @@ bool displayError(volatile Cell cells[], int numel) {
   // all four has issues
   if(temperatureCount > 3) {
     if ((preventRefresh != TEMP_ERROR_H)) { // debug transmission 
-    
+      
+      Serial.println("Temperature Error");
       preventRefresh = TEMP_ERROR_H;
-      transmitErrorNumber(TEMP_ERROR_H);
+      transmitErrorNumber(TEMP_ERROR_H,temperatureCount);
       transmitErrorMessage(3, OverheatingString, CannotChargeString, SorryString);
 //      drawErrorBox();
 //      GLCD.print(OverheatingString, 120, 120);
@@ -69,7 +72,7 @@ bool displayError(volatile Cell cells[], int numel) {
 //      GLCD.print(SorryString, 120, 180);
     }
     return true;
-  } else if(undervoltageCount > 3) {
+  } else if(undervoltageCount >= 3) {
     
     if(preventRefresh != UNDERVOLTAGE_ERROR_H) {
       preventRefresh = UNDERVOLTAGE_ERROR_H;
@@ -91,11 +94,13 @@ bool displayError(volatile Cell cells[], int numel) {
 //      GLCD.print(SorryString, 120, 180);
     }
     return true;
-  } else if(overcurrentOutCount >= 3) {
+  } else if(overcurrentOutCount >= 2) {
     if(preventRefresh != OVERCURRENT_OUT_ERROR_H) {
       preventRefresh = OVERCURRENT_OUT_ERROR_H;
+      Serial.println("Current error H");
       transmitErrorNumber(OVERCURRENT_OUT_ERROR_H, overcurrentOutCount);
-      
+      transmitErrorMessage(3, OvercurrentString, UnplugString, SorryString);
+
 //      drawErrorBox();
 //      overloaded3[18] = (overcurrentOutCount == 4) ? '1' : ' ';
 //      overloaded3[19] = (overcurrentOutCount == 4) ? '0' : '7';
