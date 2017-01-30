@@ -18,7 +18,7 @@ public:
   char type();
   int size();
   char *operator[](unsigned int n);
-  
+
 private:
   Stream &s;
   static const int maxRL = 10;
@@ -27,7 +27,7 @@ private:
   int rCount;
   char rData[maxRL][maxDL];
   char *validMessageTypes;
-  
+
   void waitForBeginMessage();
   char getMessageType();
   int getMessageLength();

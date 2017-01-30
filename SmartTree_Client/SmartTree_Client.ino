@@ -15,7 +15,7 @@ SdFile file;
 UTFT GLCD(CTE70, 25, 26, 27, 28);
 UTFT_SdRaw files(&GLCD);
 
-Receiver r(Serial1/*Change to Serial1 after debugging*/, "BCDEeLMNnRSW"/*these are the valid commands*/);
+Receiver r(Serial1, "BCDEeLMNnRSW"/*these are the valid commands*/);
 
 unsigned int energyBars[8] = {0};
 unsigned int energyBarLength = 1;
@@ -41,11 +41,11 @@ void setup() {
 // watchdog timer to be 4.5 secs
   uint32_t wdp_ms = 1152 ;
   WDT_Enable( WDT, 0x2000 | wdp_ms | ( wdp_ms << 16 ));
-// 
+//
   pinMode(9, OUTPUT);   //  screen on /off pin
   digitalWrite(9, HIGH);
-  
-  pinMode(14, OUTPUT);  //  shutdown pin 
+
+  pinMode(14, OUTPUT);  //  shutdown pin
   digitalWrite(14, HIGH);
   r.reply(REPLY_READY);
 }
@@ -53,30 +53,18 @@ void setup() {
 void loop() {
   WDT_Restart(WDT);
    Serial.println("Start receiving message");
-//   if (Serial1.available() > 0) {
-//                // read the incoming byte:
-//                byte incomingByte = Serial1.read();
-//
-//                // say what you got:
-//                Serial.print("I received: ");
-//                Serial.println(incomingByte, DEC);
-//   }
-//    
-//  watchdogReset();    
+//  watchdogReset();
 
-//delay(1000);
-
-  if(r.receiveData()) {
+  if (r.receiveData()) {
     Serial.println("Get some data") ;
     r.reply(REPLY_SUCCESS);
     r.reply(REPLY_BUSY);
     execute();
     r.reply(REPLY_READY);
-  } else {
+  }
+  else {
     r.reply(REPLY_FAILED);
   }
-  
-  
 }
 
 
@@ -90,19 +78,11 @@ void execute() {
       updateEnergyBars(energyBars, energyBarLength);
       break;
     case 'C': // clear notice msg area
-//      GLCD.setColor(VGA_WHITE);
-//      GLCD.fillRect(570, 200, 799, 280);
-      // refresh the screen instea
-//      initLCD();
-
       GLCD.clrScr();
       files.load(0, 0, 800, 480, "sc.RAW", 1);
-      
       Serial.println(F("LCD Initialised."));
       break;
-      
     case 'D': // draw normal screen data
-    
       if(r.size() != 4) break;
       powerIn = atoi(r[0]);
       oldEnergy = atoi(r[1]);
@@ -110,20 +90,17 @@ void execute() {
       totalEnergy = atoi(r[3]);
       updateScreenValues(powerIn, oldEnergy, powerOut,totalEnergy);
       break;
-      
-    case 'E': // draw error box and msg 
+
+    case 'E': // draw error box and msg
       drawErrorBox();
       for(int i = 0; i < r.size(); i++) { // print out error message
-               
          char* temp = new char [strlen(r[i])];
          strcpy(temp, r[i]);
          int len = strlen(temp);
          temp[len-1] = ' '; //(null terminating string produce random characters (already handled on the UTFT side)
-         
          GLCD.print(temp, 120, 120 + 32 * i);
       }
       break;
-      // TODO error numbers instead of msgs
     case 'L':
       if(r.size() != 2) break;
       logToFile(logFileNames[atoi(r[0])], r[1]);
@@ -157,4 +134,3 @@ void execute() {
       break;
   }
 }
-

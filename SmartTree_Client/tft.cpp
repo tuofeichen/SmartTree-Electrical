@@ -49,7 +49,7 @@ void updateBattery(int chargePercent) {
   // Battery Icon Color Change
   if (chargePercent <= 20) {
     GLCD.setColor(VGA_RED);
-  } else if (chargePercent >= 40) { 
+  } else if (chargePercent >= 40) {
     GLCD.setColor(VGA_GREEN);
   } else {
     SET_ORANGE();
@@ -60,22 +60,22 @@ void updateBattery(int chargePercent) {
 
 void updateEnergyBars(unsigned int *values, unsigned int length) {
   int yAxisScale = 0;
-  
+
   // get largest value for scaling the graph
   for(int i = 0; i < length; i++) {
     if(yAxisScale < values[i]) yAxisScale = values[i];
   }
-   
+
   if(yAxisScale < 20) yAxisScale = 20;     // prevent Y-axis scale from being too small
   yAxisScale = (yAxisScale + 9) / 10 * 10; // round to the next 10
-  
+
   clearEnergyBars();
   SET_BLUE();
-  
+
   for (int i = 0; i < length; i++) {
     GLCD.fillRect(PBX + PBW * i, PBY, PBX + PBSLOT + PBW * i, PBY - (values[i] * MAX_BAR_HEIGHT) / yAxisScale);
   }
-  
+
   // write axis label
   GLCD.setFont(SmallFont);
   GLCD.setBackColor(VGA_WHITE);
@@ -118,4 +118,3 @@ void setupPrintMinorError() {
   GLCD.setFont(BigFont);
   GLCD.setBackColor(VGA_TRANSPARENT);
 }
-
