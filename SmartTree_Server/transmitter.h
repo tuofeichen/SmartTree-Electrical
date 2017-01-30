@@ -72,7 +72,7 @@ inline void transmitEnergyBars(int num, double *bars) {
   SC_CONN.println(":B");
   SC_CONN.println(num);
   for(int i = 0; i < num; i++) {
-//    Serial.println(*bars);
+    Serial.println(*bars);
     SC_CONN.println(*bars);
     bars++;
 //    SC_CONN.println(bars[num]);

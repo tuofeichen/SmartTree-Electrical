@@ -43,15 +43,18 @@ void updateEnergyBars() {
     for(int i = 0; i < energyDueFlashAddress; i++) {
       values[i] = dueFlashStorage.read(i);
     }
+    Serial.println(dailyEnergy); 
     transmitEnergyBars(energyDueFlashAddress, values);
-  } else {
+  } 
+  else {
     firstCycle = false;
     for(int i = 0; i < 8; i++) {
       values[i] = dueFlashStorage.read((energyDueFlashAddress - 8 + 50 + i) % 50); // wrap around, ensure positive
     }
     
+
     values[8] = dailyEnergy;    
-//    Serial.println(dailyEnergy);
+    Serial.println(dailyEnergy);
     
     transmitEnergyBars(9, values);
   }
@@ -59,7 +62,7 @@ void updateEnergyBars() {
 
 void updateFlash() {
   
-  dueFlashStorage.write(energyDueFlashAddress, dailyEnergy * 3600);
+  dueFlashStorage.write(energyDueFlashAddress, dailyEnergy * 3600); // disale the scaling 
   energyDueFlashAddress++;
   if(energyDueFlashAddress > 50) {
     energyDueFlashAddress = 0;
@@ -108,8 +111,9 @@ void updateScreenUponDateChange() { // replace this function when sleep mode is 
   int NewDay = getVirtualDay(); // a day may be shortened for testing purposes
   if (NewDay != oldDay) { 
     Serial.println(F("Updating Graph"));
-    updateEnergyBars();
     updateFlash();
+    updateEnergyBars();
+
     dailyEnergy = 0; 
   }
    oldDay = NewDay;

@@ -112,11 +112,11 @@ void loop() {
   
   // serial debug
     logDataFlag = false;
-    printDate(Serial);                         // print out date
-    Serial.println();
-    printTime(Serial);                         // print out time
-    Serial.println();
-    cells[logDataCurrentCell].logData(Serial); // print out cell data
+    // printDate(Serial);                         // print out date
+    // Serial.println();
+    // printTime(Serial);                         // print out time
+    // Serial.println();
+    // cells[logDataCurrentCell].logData(Serial); // print out cell data
 
     if(IS_FLAG_SET(mode, ERROR_FLAG)) {        // print out error
       cells[logDataCurrentCell].logErrors(Serial);
