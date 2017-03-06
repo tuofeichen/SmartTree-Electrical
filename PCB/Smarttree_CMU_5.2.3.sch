@@ -13287,24 +13287,24 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 -&gt;Software reset for each sensor board
 -&gt;9 to 3V3 regulator on the board
 -&gt;get rid of 3v3 ref pin (VREF)
-</text>
+-&gt;isolate arduino power</text>
 </plain>
 <instances>
 <instance part="VDD2" gate="G$1" x="127" y="147.32"/>
-<instance part="VDD5" gate="G$1" x="210.82" y="111.76"/>
-<instance part="SUPPLY19" gate="GND" x="228.6" y="81.28"/>
-<instance part="5V" gate="G$1" x="243.84" y="109.22"/>
+<instance part="VDD5" gate="G$1" x="213.36" y="129.54"/>
+<instance part="SUPPLY19" gate="GND" x="231.14" y="99.06"/>
+<instance part="5V" gate="G$1" x="246.38" y="127"/>
 <instance part="SUPPLY10" gate="GND" x="109.22" y="116.84"/>
-<instance part="5V_REG" gate="G$1" x="228.6" y="104.14"/>
-<instance part="C10" gate="G$1" x="210.82" y="96.52">
-<attribute name="OC_NEWARK" x="210.82" y="96.52" size="1.778" layer="96" display="off"/>
-<attribute name="MF" x="210.82" y="96.52" size="1.778" layer="96" display="off"/>
-<attribute name="MPN" x="210.82" y="96.52" size="1.778" layer="96" display="off"/>
+<instance part="5V_REG" gate="G$1" x="231.14" y="121.92"/>
+<instance part="C10" gate="G$1" x="213.36" y="114.3">
+<attribute name="OC_NEWARK" x="213.36" y="114.3" size="1.778" layer="96" display="off"/>
+<attribute name="MF" x="213.36" y="114.3" size="1.778" layer="96" display="off"/>
+<attribute name="MPN" x="213.36" y="114.3" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C6" gate="G$1" x="243.84" y="96.52">
-<attribute name="OC_NEWARK" x="243.84" y="96.52" size="1.778" layer="96" display="off"/>
-<attribute name="MF" x="243.84" y="96.52" size="1.778" layer="96" display="off"/>
-<attribute name="MPN" x="243.84" y="96.52" size="1.778" layer="96" display="off"/>
+<instance part="C6" gate="G$1" x="246.38" y="114.3">
+<attribute name="OC_NEWARK" x="246.38" y="114.3" size="1.778" layer="96" display="off"/>
+<attribute name="MF" x="246.38" y="114.3" size="1.778" layer="96" display="off"/>
+<attribute name="MPN" x="246.38" y="114.3" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="D1" gate="G$1" x="104.14" y="134.62" rot="R180">
 <attribute name="OC_NEWARK" x="104.14" y="134.62" size="1.778" layer="96" display="off"/>
@@ -13393,17 +13393,17 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <nets>
 <net name="GND" class="0">
 <segment>
-<wire x1="243.84" y1="88.9" x2="228.6" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="106.68" x2="231.14" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="5V_REG" gate="G$1" pin="GND"/>
-<wire x1="228.6" y1="88.9" x2="210.82" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="228.6" y1="91.44" x2="228.6" y2="88.9" width="0.1524" layer="91"/>
-<junction x="228.6" y="88.9"/>
+<wire x1="231.14" y1="106.68" x2="213.36" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="109.22" x2="231.14" y2="106.68" width="0.1524" layer="91"/>
+<junction x="231.14" y="106.68"/>
 <pinref part="SUPPLY19" gate="GND" pin="GND"/>
-<wire x1="228.6" y1="88.9" x2="228.6" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="106.68" x2="231.14" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="C10" gate="G$1" pin="-"/>
-<wire x1="210.82" y1="88.9" x2="210.82" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="106.68" x2="213.36" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="C6" gate="G$1" pin="-"/>
-<wire x1="243.84" y1="88.9" x2="243.84" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="106.68" x2="246.38" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY6" gate="GND" pin="GND"/>
@@ -13481,11 +13481,11 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <segment>
 <pinref part="5V" gate="G$1" pin="5V"/>
 <pinref part="5V_REG" gate="G$1" pin="VOUT"/>
-<wire x1="243.84" y1="104.14" x2="243.84" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="241.3" y1="104.14" x2="243.84" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="121.92" x2="246.38" y2="127" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="121.92" x2="246.38" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="C6" gate="G$1" pin="+"/>
-<wire x1="243.84" y1="104.14" x2="243.84" y2="99.06" width="0.1524" layer="91"/>
-<junction x="243.84" y="104.14"/>
+<wire x1="246.38" y1="121.92" x2="246.38" y2="116.84" width="0.1524" layer="91"/>
+<junction x="246.38" y="121.92"/>
 </segment>
 <segment>
 <pinref part="Q2" gate="G$1" pin="D"/>
@@ -13583,12 +13583,12 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <net name="12V" class="0">
 <segment>
 <pinref part="VDD5" gate="G$1" pin="12V"/>
-<wire x1="210.82" y1="109.22" x2="210.82" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="127" x2="213.36" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="5V_REG" gate="G$1" pin="VIN"/>
-<wire x1="215.9" y1="104.14" x2="210.82" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="121.92" x2="213.36" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="C10" gate="G$1" pin="+"/>
-<wire x1="210.82" y1="99.06" x2="210.82" y2="104.14" width="0.1524" layer="91"/>
-<junction x="210.82" y="104.14"/>
+<wire x1="213.36" y1="116.84" x2="213.36" y2="121.92" width="0.1524" layer="91"/>
+<junction x="213.36" y="121.92"/>
 </segment>
 <segment>
 <pinref part="POWER" gate="G$1" pin="1"/>
