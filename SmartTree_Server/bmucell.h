@@ -62,8 +62,8 @@ private:
   
   // Error condition values
   static const double vHighLimit = 40;
-  static const double vLowLimit = 36;
-  static const double cLimit = 5;
+  static const double vLowLimit = 30;
+  static const double cLimit = 7;
   static const double cLowLimit = 1.0;
   static const int tempLimit = 50;
   

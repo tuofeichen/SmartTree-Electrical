@@ -41,10 +41,27 @@ Cell::Cell(unsigned int cellnum) {
 }
 
 void Cell::update() volatile {
-  temperature = readTemperature();
-  current_out = readCurrentOut();
-  current_in = readCurrentIn();
-  voltage = readVoltage();
+
+  current_in = 0;
+  current_out = 0;
+  temperature = 0;
+  voltage = 0;
+
+  for (int i = 0; i<10; i++){ // average filter here 
+  temperature += readTemperature();
+  
+  current_out += readCurrentOut();
+
+  current_in += readCurrentIn();
+  
+  voltage += readVoltage();
+  }
+
+  current_in  /= 10;
+  current_out /= 10;
+  temperature /= 10;
+  voltage     /= 10;
+
 }
 
 void Cell::logData(Stream &s) volatile {
@@ -296,24 +313,33 @@ double Cell::readVoltage() volatile {
 
 double Cell::readCurrentIn() volatile {
   double voltage = readADCVoltage(CURRENT_IN);
-  return abs((voltage - Voe) *  5/0.625);
+  return abs((voltage - Voe) *  5 / 0.625);
 }
 
 double Cell::readCurrentOut() volatile {
   double voltage = readADCVoltage(CURRENT_OUT);
-  return abs((voltage - Voe) * 5/0.625);
+  return abs((voltage - Voe) * 5 / 0.625);
 }
 
 double Cell::readADCVoltage(sensorType type) volatile {
+  double voltage = (Vref * readADC(cell_num * 4 + type) / 4096);
+
+  // Serial.print("ADC Converted Voltage   ");
+  // Serial.println(voltage);
   return Vref * readADC(cell_num * 4 + type) / 4096;
 }
 
 
 unsigned int Cell::readADC(unsigned int val) {
+  int value = 0;
   digitalWrite(ADDR0, (val & 0b0001) != 0 ? HIGH : LOW);
   digitalWrite(ADDR1, (val & 0b0010) != 0 ? HIGH : LOW);
   digitalWrite(ADDR2, (val & 0b0100) != 0 ? HIGH : LOW);
   digitalWrite(ADDR3, (val & 0b1000) != 0 ? HIGH : LOW);
+  
+  // delay(200);
 
+  // value = analogRead(ADCPIN);
+ 
   return analogRead(ADCPIN);
 }

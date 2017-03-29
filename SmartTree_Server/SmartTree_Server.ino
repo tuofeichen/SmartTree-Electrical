@@ -32,7 +32,7 @@ volatile Cell cells[] = {
 
 
 DueFlashStorage dueFlashStorage; // Due own flash storage for the energy bar
-RTC_clock rtc_clock(XTAL);       // Due internal RTC for counting date
+RTC_clock rtc_clock(RC);       // Due internal RTC for counting date
 
 
 
@@ -57,7 +57,7 @@ void setup() {
   Serial1.begin(9600); // RS232 Screen communication interface
   
   // initScreen();        // initialize screen
-  initRTC(12,0,0,16,1,2017); // hh/mm/ss dd/mm/yr
+  initRTC(12,0,0,5,2,2017); // hh/mm/ss dd/mm/yr
   transmitClearMessage();     // initialize transmitter (reload screen background)
   
   // init BMS; 
@@ -73,13 +73,19 @@ void setup() {
 void loop() {
   
   if(IN_NORMAL_MODE_STRICT(mode)) {
-//    Serial.println("BMS in Normal Mode");
+  // Serial.println("BMS in Normal Mode");
+
+      digitalWrite(RI1, HIGH); 
+      digitalWrite(RO1, HIGH);
+      digitalWrite(RI2, HIGH); 
+      digitalWrite(RO2, HIGH);
 
     if (preventRefresh) // if last mode is error, clear preventRefresh flag, refresh screen 
     {
         transmitClearMessage();
         preventRefresh = 0;
     }
+
 
     if(updateScreenFlag) { // if timer interrupt is triggered
       updateScreenFlag = false;    
@@ -89,7 +95,6 @@ void loop() {
 
   } else if(IN_ERROR_MODE_STRICT(mode)) {
 
-    // Serial.println("BMS in Error Mode");
     if(!displayError(cells, NUM_CELL) && updateScreenFlag) { // display error once (displayError is the error handling function) 
       updateScreenFlag = false;
       updateScreen(g_voltage,g_currentIn,g_currentOut);  
@@ -117,7 +122,7 @@ void loop() {
     // printTime(Serial);                         // print out time
     // Serial.println();
     // cells[logDataCurrentCell].logData(Serial); // print out cell data
-
+    cells[NUM_CELL-1].logData(Serial);
     if(IS_FLAG_SET(mode, ERROR_FLAG)) {        // print out error
       cells[logDataCurrentCell].logErrors(Serial);
     }
@@ -134,29 +139,43 @@ void loop() {
 // BMS check interrupt
 void globalBatteryCheck() {
   
+
   bool allCellsNormal = true;
   g_voltage    = 0;
   g_currentIn  = 0;
   g_currentOut = 0;
 
-  for(int i = 0; i < NUM_CELL; i++) {
-    cells[i].update(); // read in new sensor for all of them
+  // for(int i = 0; i < NUM_CELL; i++) {
+  //   cells[i].update(); // read in new sensor for all of them
 
-    if(cells[i].checkErrors()) { // check errors
-      allCellsNormal = false; 
-      SET_FLAG(mode, ERROR_FLAG);
-    }
+  //   if(cells[i].checkErrors()) { // check errors
+  //     allCellsNormal = false; 
+  //     SET_FLAG(mode, ERROR_FLAG);
+  //   }
     
-    g_voltage    += cells[i].getVoltage();
-    g_currentIn  += cells[i].getCurrentIn();
-    g_currentOut += cells[i].getCurrentOut();
-  }
+  //   g_voltage    += cells[i].getVoltage();
+  //   g_currentIn  += cells[i].getCurrentIn();
+  //   g_currentOut += cells[i].getCurrentOut();
+  // }
   
+    cells[NUM_CELL-1].update(); // read in new sensor for all of them
+
+
+    // if(cells[NUM_CELL-1].checkErrors()) { // check errors
+    //   allCellsNormal = false; 
+    //   SET_FLAG(mode, ERROR_FLAG);
+    // }
+    
+    g_voltage    += cells[NUM_CELL-1].getVoltage();
+    g_currentIn  += cells[NUM_CELL-1].getCurrentIn();
+    g_currentOut += cells[NUM_CELL-1].getCurrentOut();
+
+
   if(allCellsNormal) {
     CLEAR_FLAG(mode, ERROR_FLAG);
   }
 
-  g_voltage = (g_voltage / NUM_CELL);
+  g_voltage = g_voltage / NUM_CELL;
 }
 
 
