@@ -8010,7 +8010,7 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <clearance class="0" value="0.127"/>
 </class>
 <class number="1" name="Power" width="2.54" drill="0">
-<clearance class="1" value="0.635"/>
+<clearance class="1" value="0.508"/>
 </class>
 </classes>
 <parts>
@@ -8067,16 +8067,14 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <part name="CS2" library="Allen" deviceset="S22P015S05" device=""/>
 <part name="C1" library="adafruit" deviceset="C-US" device="C0805" value="0.1uF"/>
 <part name="C2" library="adafruit" deviceset="C-US" device="C0805" value="0.1uF"/>
-<part name="R10" library="adafruit" deviceset="R-US_" device="R0805" value="1k"/>
+<part name="R10" library="adafruit" deviceset="R-US_" device="R0805" value="10k"/>
 <part name="SUPPLY17" library="eagle-book" deviceset="GND" device=""/>
-<part name="Z2" library="SparkFun" deviceset="DIODE-ZENER" device="-BZT52" value=""/>
+<part name="U$1" library="SparkFun" deviceset="DIODE-ZENER" device="-BZT52" value=""/>
 <part name="Z1" library="SparkFun" deviceset="DIODE-ZENER" device="-BZT52" value=""/>
-<part name="R11" library="adafruit" deviceset="R-US_" device="R0805" value="1k"/>
+<part name="R11" library="adafruit" deviceset="R-US_" device="R0805" value="10k"/>
 <part name="SUPPLY18" library="eagle-book" deviceset="GND" device=""/>
 <part name="R12" library="adafruit" deviceset="R-US_" device="R0805" value="10k"/>
 <part name="SUPPLY19" library="eagle-book" deviceset="GND" device=""/>
-<part name="R13" library="adafruit" deviceset="R-US_" device="R0805" value="100"/>
-<part name="R14" library="adafruit" deviceset="R-US_" device="R0805" value="100"/>
 </parts>
 <sheets>
 <sheet>
@@ -8155,7 +8153,7 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <instance part="C6" gate="G$1" x="17.78" y="134.62" rot="R270"/>
 <instance part="R9" gate="G$1" x="38.1" y="127" rot="MR90"/>
 <instance part="SUPPLY4" gate="GND" x="38.1" y="116.84"/>
-<instance part="SUPPLY5" gate="GND" x="10.16" y="48.26"/>
+<instance part="SUPPLY5" gate="GND" x="10.16" y="55.88"/>
 <instance part="SUPPLY6" gate="1" x="10.16" y="101.6"/>
 <instance part="CS2" gate="G$1" x="71.12" y="81.28" smashed="yes" rot="R270">
 <attribute name="NAME" x="76.2" y="86.36" size="3.81" layer="95" rot="R270"/>
@@ -8165,17 +8163,15 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <instance part="C2" gate="G$1" x="17.78" y="73.66" rot="R270"/>
 <instance part="R10" gate="G$1" x="38.1" y="66.04" rot="MR90"/>
 <instance part="SUPPLY17" gate="GND" x="38.1" y="55.88"/>
-<instance part="Z2" gate="G$1" x="22.86" y="55.88" rot="R90"/>
-<instance part="Z1" gate="G$1" x="22.86" y="116.84" smashed="yes" rot="R90">
-<attribute name="NAME" x="19.8374" y="114.3" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="25.1714" y="119.38" size="1.778" layer="96" rot="R90"/>
+<instance part="U$1" gate="G$1" x="22.86" y="63.5" rot="R90"/>
+<instance part="Z1" gate="G$1" x="22.86" y="127" smashed="yes" rot="R90">
+<attribute name="NAME" x="19.8374" y="124.46" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="25.1714" y="129.54" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="R11" gate="G$1" x="30.48" y="134.62" rot="MR0"/>
-<instance part="SUPPLY18" gate="GND" x="22.86" y="109.22"/>
+<instance part="SUPPLY18" gate="GND" x="22.86" y="116.84"/>
 <instance part="R12" gate="G$1" x="30.48" y="73.66" rot="MR0"/>
-<instance part="SUPPLY19" gate="GND" x="22.86" y="48.26"/>
-<instance part="R13" gate="G$1" x="22.86" y="66.04" rot="MR270"/>
-<instance part="R14" gate="G$1" x="22.86" y="127" rot="MR270"/>
+<instance part="SUPPLY19" gate="GND" x="22.86" y="55.88"/>
 </instances>
 <busses>
 </busses>
@@ -8247,7 +8243,7 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 </segment>
 <segment>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
-<wire x1="10.16" y1="66.04" x2="10.16" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="66.04" x2="10.16" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="81.28" x2="10.16" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="81.28" x2="10.16" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="2"/>
@@ -8267,12 +8263,12 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <segment>
 <pinref part="Z1" gate="G$1" pin="A"/>
 <pinref part="SUPPLY18" gate="GND" pin="GND"/>
-<wire x1="22.86" y1="114.3" x2="22.86" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="124.46" x2="22.86" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="Z2" gate="G$1" pin="A"/>
+<pinref part="U$1" gate="G$1" pin="A"/>
 <pinref part="SUPPLY19" gate="GND" pin="GND"/>
-<wire x1="22.86" y1="53.34" x2="22.86" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="60.96" x2="22.86" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CSO" class="0">
@@ -8282,13 +8278,14 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <label x="38.1" y="17.78" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R11" gate="G$1" pin="2"/>
-<pinref part="C6" gate="G$1" pin="1"/>
-<wire x1="25.4" y1="134.62" x2="22.86" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="134.62" x2="20.32" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="R14" gate="G$1" pin="1"/>
-<wire x1="22.86" y1="134.62" x2="22.86" y2="132.08" width="0.1524" layer="91"/>
-<junction x="22.86" y="134.62"/>
+<wire x1="43.18" y1="134.62" x2="38.1" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="R9" gate="G$1" pin="2"/>
+<wire x1="38.1" y1="134.62" x2="38.1" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="CS1" gate="G$1" pin="VOUT"/>
+<label x="38.1" y="134.62" size="1.778" layer="95"/>
+<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="35.56" y1="134.62" x2="38.1" y2="134.62" width="0.1524" layer="91"/>
+<junction x="38.1" y="134.62"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -8512,13 +8509,12 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <label x="38.1" y="22.86" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R12" gate="G$1" pin="2"/>
-<pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="25.4" y1="73.66" x2="22.86" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="73.66" x2="20.32" y2="73.66" width="0.1524" layer="91"/>
-<pinref part="R13" gate="G$1" pin="1"/>
-<wire x1="22.86" y1="73.66" x2="22.86" y2="71.12" width="0.1524" layer="91"/>
-<junction x="22.86" y="73.66"/>
+<wire x1="43.18" y1="73.66" x2="38.1" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="38.1" y1="73.66" x2="38.1" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="CS2" gate="G$1" pin="VOUT"/>
+<wire x1="43.18" y1="73.66" x2="48.26" y2="73.66" width="0.1524" layer="91"/>
+<label x="43.18" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$11" class="1">
@@ -8681,40 +8677,26 @@ Pls share any updates with mosaicmerc@yahoo.com</description>
 <junction x="155.702" y="21.844"/>
 </segment>
 </net>
-<net name="N$13" class="0">
+<net name="N$9" class="0">
 <segment>
-<pinref part="R12" gate="G$1" pin="1"/>
-<pinref part="R10" gate="G$1" pin="2"/>
-<wire x1="38.1" y1="73.66" x2="38.1" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="73.66" x2="35.56" y2="73.66" width="0.1524" layer="91"/>
-<pinref part="CS2" gate="G$1" pin="VOUT"/>
-<wire x1="38.1" y1="73.66" x2="48.26" y2="73.66" width="0.1524" layer="91"/>
-<junction x="38.1" y="73.66"/>
+<pinref part="R11" gate="G$1" pin="2"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<wire x1="25.4" y1="134.62" x2="22.86" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="Z1" gate="G$1" pin="C"/>
+<wire x1="22.86" y1="134.62" x2="20.32" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="134.62" x2="22.86" y2="129.54" width="0.1524" layer="91"/>
+<junction x="22.86" y="134.62"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
-<pinref part="CS1" gate="G$1" pin="VOUT"/>
-<pinref part="R11" gate="G$1" pin="1"/>
-<wire x1="43.18" y1="134.62" x2="38.1" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="R9" gate="G$1" pin="2"/>
-<wire x1="38.1" y1="134.62" x2="35.56" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="134.62" x2="38.1" y2="132.08" width="0.1524" layer="91"/>
-<junction x="38.1" y="134.62"/>
-</segment>
-</net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="R13" gate="G$1" pin="2"/>
-<pinref part="Z2" gate="G$1" pin="C"/>
-<wire x1="22.86" y1="60.96" x2="22.86" y2="58.42" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$14" class="0">
-<segment>
-<pinref part="R14" gate="G$1" pin="2"/>
-<pinref part="Z1" gate="G$1" pin="C"/>
-<wire x1="22.86" y1="121.92" x2="22.86" y2="119.38" width="0.1524" layer="91"/>
+<pinref part="R12" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="25.4" y1="73.66" x2="22.86" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="C"/>
+<wire x1="22.86" y1="73.66" x2="20.32" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="73.66" x2="22.86" y2="66.04" width="0.1524" layer="91"/>
+<junction x="22.86" y="73.66"/>
 </segment>
 </net>
 </nets>
