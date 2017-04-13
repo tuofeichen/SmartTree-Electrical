@@ -51,7 +51,7 @@ void setup() {
 }
 
 void loop() {
-  WDT_Restart(WDT);
+//  WDT_Restart(WDT);
    Serial.println("Start receiving message");
 //  watchdogReset();
 

@@ -9,7 +9,7 @@
 #define WAKE 'W'
 
 // Change to Serial1 after debugging
-#define SC_CONN Serial1 
+#define SC_CONN Serial1
 
 inline void transmitMessage(char msg) {
   SC_CONN.print(':');

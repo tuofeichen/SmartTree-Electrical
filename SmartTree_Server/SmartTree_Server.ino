@@ -23,7 +23,7 @@
 //#include "debug.h"
 
 
-#define NUM_CELL 1
+#define NUM_CELL 4
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
@@ -32,7 +32,7 @@ volatile Cell cells[] = {
 
 
 DueFlashStorage dueFlashStorage; // Due own flash storage for the energy bar
-RTC_clock rtc_clock(XTAL);       // Due internal RTC for counting date
+RTC_clock rtc_clock(RC);       // Due internal RTC for counting date
 
 
 
@@ -116,7 +116,7 @@ void loop() {
     // Serial.println();
     // printTime(Serial);                         // print out time
     // Serial.println();
-    // cells[logDataCurrentCell].logData(Serial); // print out cell data
+    cells[logDataCurrentCell].logData(Serial); // print out cell data
 
     if(IS_FLAG_SET(mode, ERROR_FLAG)) {        // print out error
       cells[logDataCurrentCell].logErrors(Serial);
