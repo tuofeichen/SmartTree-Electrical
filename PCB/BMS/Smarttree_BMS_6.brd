@@ -2759,8 +2759,8 @@ Please make sure your boards conform to these design rules.</description>
 <element name="JP4G" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_SILK" value="JUMPER-SMT_2_NC_TRACE_SILK" x="12.446" y="20.828" smashed="yes" rot="R270">
 <attribute name="NAME" x="13.589" y="20.828" size="0.6096" layer="25" font="vector" ratio="20" rot="R270" align="bottom-center"/>
 </element>
-<element name="JP2G" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_SILK" value="JUMPER-SMT_2_NC_TRACE_SILK" x="69.85" y="41.148" smashed="yes" rot="R90">
-<attribute name="NAME" x="68.707" y="41.148" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
+<element name="JP2G" library="SparkFun-Jumpers" package="SMT-JUMPER_2_NC_TRACE_SILK" value="JUMPER-SMT_2_NC_TRACE_SILK" x="68.326" y="40.64" smashed="yes" rot="R90">
+<attribute name="NAME" x="67.183" y="40.64" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
 </element>
 <element name="3V3_REG" library="burr-brown" package="SOT223" value="REG1117" x="22.86" y="36.83" smashed="yes">
 <attribute name="MF" value="" x="22.86" y="36.83" size="1.778" layer="27" display="off"/>
@@ -2969,7 +2969,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="73.8759" y1="24.2697" x2="75.946" y2="26.3398" width="0.3302" layer="1"/>
 <wire x1="75.946" y1="26.3398" x2="75.946" y2="26.416" width="0.3302" layer="1"/>
 <via x="69.85" y="42.672" extent="1-16" drill="0.3302"/>
-<wire x1="69.85" y1="42.672" x2="69.85" y2="41.656" width="0.3302" layer="1"/>
+<wire x1="69.85" y1="42.672" x2="68.326" y2="41.148" width="0.3302" layer="1"/>
 <via x="16.51" y="35.052" extent="1-16" drill="0.5"/>
 <wire x1="16.002" y1="33.274" x2="16.002" y2="34.544" width="0.3302" layer="1"/>
 <wire x1="16.002" y1="34.544" x2="16.51" y2="35.052" width="0.3302" layer="1"/>
@@ -4246,7 +4246,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="N$21" class="1">
 <contactref element="U$2" pad="P$8"/>
 <contactref element="JP2G" pad="1"/>
-<wire x1="69.85" y1="39.052" x2="69.85" y2="40.64" width="0.3302" layer="1"/>
+<wire x1="69.85" y1="39.052" x2="68.326" y2="40.132" width="0.3302" layer="1"/>
 </signal>
 <signal name="N$1" class="1">
 <contactref element="U$2" pad="P$5"/>
