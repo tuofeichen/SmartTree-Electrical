@@ -51,7 +51,7 @@ void setup() {
 }
 
 void loop() {
-//  WDT_Restart(WDT);
+  WDT_Restart(WDT);
    Serial.println("Start receiving message");
 //  watchdogReset();
 
@@ -103,7 +103,7 @@ void execute() {
       break;
     case 'L':
       if(r.size() != 2) break;
-      logToFile(logFileNames[atoi(r[0])], r[1]);
+      logToFile(atoi(r[0]), r[1]);
       break;
     case 'M': // draw battery meter
       if(r.size() != 1) break;
