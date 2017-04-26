@@ -43,7 +43,7 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
@@ -295,15 +295,9 @@ straight</description>
 <rectangle x1="-1.15" y1="-5.05" x2="1.15" y2="-4.35" layer="51"/>
 <rectangle x1="6.35" y1="-6.65" x2="7.15" y2="-4.35" layer="51"/>
 <rectangle x1="-7.15" y1="-6.65" x2="-6.35" y2="-4.35" layer="51"/>
-<hole x="-6.75" y="-5.5" drill="1"/>
-<hole x="-6.75" y="-6.1" drill="1"/>
-<hole x="-6.75" y="-4.9" drill="1"/>
-<hole x="6.75" y="-5.5" drill="1"/>
-<hole x="6.75" y="-4.9" drill="1"/>
-<hole x="6.75" y="-6.1" drill="1"/>
-<hole x="0" y="-4.7" drill="1"/>
-<hole x="0.6" y="-4.7" drill="1"/>
-<hole x="-0.6" y="-4.7" drill="1"/>
+<pad name="P$1" x="-6.75" y="-5.5" drill="2.31"/>
+<pad name="P$2" x="6.75" y="-5.5" drill="2.31"/>
+<pad name="P$3" x="0" y="-4.7" drill="2.31"/>
 </package>
 </packages>
 <symbols>
