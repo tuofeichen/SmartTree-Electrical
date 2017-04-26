@@ -8136,9 +8136,12 @@ straight</description>
 <text x="-5.06" y="-15.88" size="1.778" layer="25">&gt;NAME</text>
 <pad name="8" x="3.4" y="-11" drill="1" shape="octagon"/>
 <pad name="5" x="3.4" y="-8.5" drill="1" shape="octagon"/>
-<rectangle x1="-1.15" y1="-5.05" x2="1.15" y2="-4.35" layer="45"/>
-<rectangle x1="6.35" y1="-6.65" x2="7.15" y2="-4.35" layer="45"/>
-<rectangle x1="-7.15" y1="-6.65" x2="-6.35" y2="-4.35" layer="45"/>
+<rectangle x1="-1.15" y1="-5.05" x2="1.15" y2="-4.35" layer="51"/>
+<rectangle x1="6.35" y1="-6.65" x2="7.15" y2="-4.35" layer="51"/>
+<rectangle x1="-7.15" y1="-6.65" x2="-6.35" y2="-4.35" layer="51"/>
+<pad name="P$1" x="-6.75" y="-5.5" drill="2.31"/>
+<pad name="P$2" x="6.75" y="-5.5" drill="2.31"/>
+<pad name="P$3" x="0" y="-4.7" drill="2.31"/>
 </package>
 </packages>
 <symbols>
