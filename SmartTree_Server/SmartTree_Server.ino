@@ -23,7 +23,7 @@
 //#include "debug.h"
 
 
-#define NUM_CELL 3
+#define NUM_CELL 4
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
@@ -33,7 +33,6 @@ volatile Cell cells[] = {
 
 DueFlashStorage dueFlashStorage; // Due own flash storage for the energy bar
 RTC_clock rtc_clock(XTAL);       // Due internal RTC for counting date
-
 
 
 
@@ -57,7 +56,7 @@ void setup() {
   Serial1.begin(9600); // RS232 Screen communication interface
   
   // initScreen();        // initialize screen
-  initRTC(14,20,0,23,4,2017); // hh/mm/ss dd/mm/yr
+  initRTC(16,40,0,1,5,2017); // hh/mm/ss dd/mm/yr
   transmitClearMessage();     // initialize transmitter (reload screen background)
   
   // init BMS; 
