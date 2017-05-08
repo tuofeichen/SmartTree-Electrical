@@ -13170,11 +13170,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="5V" library="SparkFun" deviceset="5V" device=""/>
 <part name="SUPPLY10" library="eagle-book" deviceset="GND" device=""/>
 <part name="5V_REG" library="burr-brown" deviceset="REG1117" device=""/>
-<part name="C10" library="SparkFun-Retired" deviceset="10UF-TANT" device="" value="0.1uF">
-<attribute name="MF" value=""/>
-<attribute name="MPN" value=""/>
-<attribute name="OC_NEWARK" value="unknown"/>
-</part>
 <part name="C6" library="SparkFun-Retired" deviceset="10UF-TANT" device="" value="10uF">
 <attribute name="MF" value=""/>
 <attribute name="MPN" value=""/>
@@ -13427,11 +13422,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="VDD3" library="microbuilder" deviceset="12V" device=""/>
 <part name="SUPPLY5" library="eagle-book" deviceset="GND" device=""/>
 <part name="3V3_REG" library="burr-brown" deviceset="REG1117" device=""/>
-<part name="C7" library="SparkFun-Retired" deviceset="10UF-TANT" device="" value="0.1uF">
-<attribute name="MF" value=""/>
-<attribute name="MPN" value=""/>
-<attribute name="OC_NEWARK" value="unknown"/>
-</part>
 <part name="C8" library="SparkFun-Retired" deviceset="10UF-TANT" device="" value="10uF">
 <attribute name="MF" value=""/>
 <attribute name="MPN" value=""/>
@@ -13444,17 +13434,21 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="CEL2" library="SmartTreeCan" deviceset="8PINCONN" device=""/>
 <part name="CEL3" library="SmartTreeCan" deviceset="8PINCONN" device=""/>
 <part name="CEL4" library="SmartTreeCan" deviceset="8PINCONN" device=""/>
+<part name="C21" library="cap-pan40" deviceset="C-NP" device="-SMD-0805" value="0.1uF">
+<attribute name="MF" value=""/>
+<attribute name="MPN" value=""/>
+<attribute name="OC_NEWARK" value="unknown"/>
+</part>
+<part name="C7" library="cap-pan40" deviceset="C-NP" device="-SMD-0805" value="0.1uF">
+<attribute name="MF" value=""/>
+<attribute name="MPN" value=""/>
+<attribute name="OC_NEWARK" value="unknown"/>
+</part>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="177.8" y="22.86" size="6.4516" layer="91">BMS and Power</text>
-<text x="12.7" y="152.4" size="1.778" layer="97">----Schematic
--&gt;RS-232 direct mapping (w/o adapter)
--&gt;DONE Software reset for each sensor board
--&gt;DONE 9 to 3V3 regulator on the board
--&gt;DONE get rid of 3v3 ref pin (VREF)
--&gt;DONE isolate arduino power</text>
+<text x="177.8" y="22.86" size="6.4516" layer="91" font="vector">BMS and Power</text>
 <wire x1="144.78" y1="172.72" x2="144.78" y2="99.06" width="0.1524" layer="97"/>
 <wire x1="144.78" y1="99.06" x2="254" y2="99.06" width="0.1524" layer="97"/>
 <wire x1="254" y1="99.06" x2="254" y2="172.72" width="0.1524" layer="97"/>
@@ -13471,11 +13465,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="5V" gate="G$1" x="226.06" y="88.9"/>
 <instance part="SUPPLY10" gate="GND" x="86.36" y="119.38"/>
 <instance part="5V_REG" gate="G$1" x="210.82" y="83.82"/>
-<instance part="C10" gate="G$1" x="193.04" y="76.2">
-<attribute name="OC_NEWARK" x="193.04" y="76.2" size="1.778" layer="96" display="off"/>
-<attribute name="MF" x="193.04" y="76.2" size="1.778" layer="96" display="off"/>
-<attribute name="MPN" x="193.04" y="76.2" size="1.778" layer="96" display="off"/>
-</instance>
 <instance part="C6" gate="G$1" x="226.06" y="76.2">
 <attribute name="OC_NEWARK" x="226.06" y="76.2" size="1.778" layer="96" display="off"/>
 <attribute name="MF" x="226.06" y="76.2" size="1.778" layer="96" display="off"/>
@@ -13552,17 +13541,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="VDD3" gate="G$1" x="149.86" y="91.44"/>
 <instance part="SUPPLY5" gate="GND" x="167.64" y="60.96"/>
 <instance part="3V3_REG" gate="G$1" x="167.64" y="83.82"/>
-<instance part="C7" gate="G$1" x="149.86" y="76.2">
-<attribute name="OC_NEWARK" x="149.86" y="76.2" size="1.778" layer="96" display="off"/>
-<attribute name="MF" x="149.86" y="76.2" size="1.778" layer="96" display="off"/>
-<attribute name="MPN" x="149.86" y="76.2" size="1.778" layer="96" display="off"/>
-</instance>
 <instance part="C8" gate="G$1" x="182.88" y="76.2">
 <attribute name="OC_NEWARK" x="182.88" y="76.2" size="1.778" layer="96" display="off"/>
 <attribute name="MF" x="182.88" y="76.2" size="1.778" layer="96" display="off"/>
 <attribute name="MPN" x="182.88" y="76.2" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY20" gate="G$1" x="182.88" y="88.9"/>
+<instance part="C21" gate="G$1" x="149.86" y="76.2" rot="R90">
+<attribute name="OC_NEWARK" x="149.86" y="76.2" size="1.778" layer="96" display="off"/>
+<attribute name="MF" x="149.86" y="76.2" size="1.778" layer="96" display="off"/>
+<attribute name="MPN" x="149.86" y="76.2" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C7" gate="G$1" x="193.04" y="76.2" rot="R90">
+<attribute name="OC_NEWARK" x="193.04" y="76.2" size="1.778" layer="96" display="off"/>
+<attribute name="MF" x="193.04" y="76.2" size="1.778" layer="96" display="off"/>
+<attribute name="MPN" x="193.04" y="76.2" size="1.778" layer="96" display="off"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -13576,10 +13570,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="210.82" y="68.58"/>
 <pinref part="SUPPLY19" gate="GND" pin="GND"/>
 <wire x1="210.82" y1="68.58" x2="210.82" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="C10" gate="G$1" pin="-"/>
-<wire x1="193.04" y1="68.58" x2="193.04" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="68.58" x2="193.04" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C6" gate="G$1" pin="-"/>
 <wire x1="226.06" y1="68.58" x2="226.06" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="C7" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="SUPPLY6" gate="GND" pin="GND"/>
@@ -13664,10 +13658,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="167.64" y="68.58"/>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
 <wire x1="167.64" y1="68.58" x2="167.64" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="C7" gate="G$1" pin="-"/>
-<wire x1="149.86" y1="68.58" x2="149.86" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="68.58" x2="149.86" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="C8" gate="G$1" pin="-"/>
 <wire x1="182.88" y1="68.58" x2="182.88" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="C21" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="5V" class="1">
@@ -13793,9 +13787,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="193.04" y1="88.9" x2="193.04" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="5V_REG" gate="G$1" pin="VIN"/>
 <wire x1="198.12" y1="83.82" x2="193.04" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="C10" gate="G$1" pin="+"/>
 <wire x1="193.04" y1="78.74" x2="193.04" y2="83.82" width="0.1524" layer="91"/>
 <junction x="193.04" y="83.82"/>
+<pinref part="C7" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="POWER" gate="G$1" pin="1"/>
@@ -13816,9 +13810,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="149.86" y1="88.9" x2="149.86" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="3V3_REG" gate="G$1" pin="VIN"/>
 <wire x1="154.94" y1="83.82" x2="149.86" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="C7" gate="G$1" pin="+"/>
 <wire x1="149.86" y1="78.74" x2="149.86" y2="83.82" width="0.1524" layer="91"/>
 <junction x="149.86" y="83.82"/>
+<pinref part="C21" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$13" class="1">
@@ -14099,7 +14093,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </sheet>
 <sheet>
 <plain>
-<text x="172.72" y="25.4" size="6.096" layer="91">Sensor and Connector</text>
+<text x="172.72" y="25.4" size="4.318" layer="91" font="vector">Sensor and Connector</text>
 </plain>
 <instances>
 <instance part="ANALOG_MUX" gate="G$1" x="83.82" y="129.54">
@@ -14403,7 +14397,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="CEL2" gate="G$1" pin="CMU6"/>
 </segment>
 </net>
-<net name="N$24" class="0">
+<net name="TS2OUT" class="0">
 <segment>
 <pinref part="R21" gate="G$1" pin="2"/>
 <pinref part="ANALOG_MUX" gate="G$1" pin="CHAN4"/>
@@ -14411,6 +14405,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="C9" gate="G$1" pin="2"/>
 <wire x1="35.56" y1="137.16" x2="68.58" y2="137.16" width="0.1524" layer="91"/>
 <junction x="35.56" y="137.16"/>
+<label x="38.1" y="137.16" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CSO2" class="0">
@@ -14485,7 +14480,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="CEL3" gate="G$1" pin="CMU6"/>
 </segment>
 </net>
-<net name="N$32" class="0">
+<net name="TS3OUT" class="0">
 <segment>
 <pinref part="R25" gate="G$1" pin="2"/>
 <wire x1="33.02" y1="106.68" x2="35.56" y2="106.68" width="0.1524" layer="91"/>
@@ -14495,6 +14490,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="48.26" y1="127" x2="68.58" y2="127" width="0.1524" layer="91"/>
 <pinref part="C12" gate="G$1" pin="2"/>
 <junction x="35.56" y="106.68"/>
+<label x="38.1" y="106.68" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CSO3" class="0">
@@ -14569,7 +14565,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="35.56" y="83.82"/>
 </segment>
 </net>
-<net name="N$39" class="0">
+<net name="TS4OUT" class="0">
 <segment>
 <pinref part="ANALOG_MUX" gate="G$1" pin="CHAN12"/>
 <wire x1="68.58" y1="116.84" x2="58.42" y2="116.84" width="0.1524" layer="91"/>
@@ -14579,6 +14575,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="C16" gate="G$1" pin="2"/>
 <wire x1="35.56" y1="76.2" x2="33.02" y2="76.2" width="0.1524" layer="91"/>
 <junction x="35.56" y="76.2"/>
+<label x="38.1" y="76.2" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="TS4" class="0">
@@ -14898,6 +14895,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="45.72" y1="167.64" x2="45.72" y2="170.18" width="0.1524" layer="91"/>
 <junction x="45.72" y="170.18"/>
+<label x="33.02" y="170.18" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RO2" class="0">
@@ -15142,10 +15140,4 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </sheets>
 </schematic>
 </drawing>
-<compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
-</compatibility>
 </eagle>
