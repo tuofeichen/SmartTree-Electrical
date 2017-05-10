@@ -8250,13 +8250,13 @@ straight</description>
 <part name="CS2" library="Allen" deviceset="S22P015S05" device=""/>
 <part name="C1" library="adafruit" deviceset="C-US" device="C0805" value="0.1uF"/>
 <part name="C2" library="adafruit" deviceset="C-US" device="C0805" value="0.1uF"/>
-<part name="R10" library="adafruit" deviceset="R-US_" device="R0805" value="1k"/>
+<part name="R10" library="adafruit" deviceset="R-US_" device="R0805" value="10k"/>
 <part name="SUPPLY17" library="eagle-book" deviceset="GND" device=""/>
 <part name="Z2" library="SparkFun" deviceset="DIODE-ZENER" device="-BZT52" value=""/>
 <part name="Z1" library="SparkFun" deviceset="DIODE-ZENER" device="-BZT52" value=""/>
-<part name="R11" library="adafruit" deviceset="R-US_" device="R0805" value="1k"/>
+<part name="R11" library="adafruit" deviceset="R-US_" device="R0805" value="330"/>
 <part name="SUPPLY18" library="eagle-book" deviceset="GND" device=""/>
-<part name="R12" library="adafruit" deviceset="R-US_" device="R0805" value="10k"/>
+<part name="R12" library="adafruit" deviceset="R-US_" device="R0805" value="330"/>
 <part name="SUPPLY19" library="eagle-book" deviceset="GND" device=""/>
 <part name="R13" library="adafruit" deviceset="R-US_" device="R0805" value="100"/>
 <part name="R14" library="adafruit" deviceset="R-US_" device="R0805" value="100"/>
