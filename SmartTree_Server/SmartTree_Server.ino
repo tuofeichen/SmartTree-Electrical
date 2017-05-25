@@ -63,7 +63,7 @@ void setup() {
   Cell::setup();       
   
   // TODO set priorities for ints
-  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (1000000); // trasnmit log data to the screen
+  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (100000000); // trasnmit log data to the screen
   Timer.getAvailable().attachInterrupt(setUpdateScreenFlag).start (2000000); // transmit display data to the screen
   Timer.getAvailable().attachInterrupt(globalBatteryCheck).start  (100000);  // BMS check
 
@@ -168,6 +168,7 @@ void setLogDataFlag() {
     return;
   logDataFlag = true;
   logDataCurrentCell++;
+  Serial.println(" log data ");
   if(logDataCurrentCell == NUM_CELL) {
     logDataCurrentCell = 0;
   }
