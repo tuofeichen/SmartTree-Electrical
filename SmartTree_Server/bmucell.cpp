@@ -23,6 +23,15 @@ void Cell::setup() {
 
 }
 
+void Cell::reset()
+{
+  digitalWrite(RESET_CELL1,LOW); // reset is for the transistor control of the 5V supply to CMU
+  digitalWrite(RESET_CELL2,LOW);
+  delay(5000);
+  digitalWrite(RESET_CELL1,HIGH); // reset is for the transistor control of the 5V supply to CMU
+  digitalWrite(RESET_CELL2,HIGH);
+}
+
 Cell::Cell(unsigned int cellnum) {
   cell_num = cellnum;
   relay_in = relayInPin(cellnum);

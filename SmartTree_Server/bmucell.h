@@ -31,6 +31,7 @@ public:
   
   // send error descriptors over a stream, such as Serial
   void logData(Stream& s) volatile;
+  void reset();
   void logErrors(Stream& s, bool verbose = false) volatile; 
   
   double getTemperature() volatile { return temperature; }

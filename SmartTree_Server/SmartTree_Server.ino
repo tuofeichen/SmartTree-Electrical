@@ -23,7 +23,7 @@
 //#include "debug.h"
 
 
-#define NUM_CELL 4
+#define NUM_CELL 1
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
@@ -32,7 +32,7 @@ volatile Cell cells[] = {
 
 
 DueFlashStorage dueFlashStorage; // Due own flash storage for the energy bar
-RTC_clock rtc_clock(RC);       // Due internal RTC for counting date
+RTC_clock rtc_clock(XTAL);       // Due internal RTC for counting date
 
 
 
@@ -63,7 +63,7 @@ void setup() {
   Cell::setup();       
   
   // TODO set priorities for ints
-  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (100000000); // trasnmit log data to the screen
+  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (1000000); // trasnmit log data to the screen
   Timer.getAvailable().attachInterrupt(setUpdateScreenFlag).start (2000000); // transmit display data to the screen
   Timer.getAvailable().attachInterrupt(globalBatteryCheck).start  (100000);  // BMS check
 
@@ -145,30 +145,29 @@ void globalBatteryCheck() {
   g_currentIn  = 0;
   g_currentOut = 0;
 
-  // for(int i = 0; i < NUM_CELL; i++) {
-  //   cells[i].update(); // read in new sensor for all of them
+  for(int i = 0; i < NUM_CELL; i++) {
+    cells[i].update(); // read in new sensor for all of them
 
-  //   if(cells[i].checkErrors()) { // check errors
-  //     allCellsNormal = false; 
-  //     SET_FLAG(mode, ERROR_FLAG);
-  //   }
+    if(cells[i].checkErrors()) { // check errors
+      allCellsNormal = false; 
+      SET_FLAG(mode, ERROR_FLAG);
+    }
     
-  //   g_voltage    += cells[i].getVoltage();
-  //   g_currentIn  += cells[i].getCurrentIn();
-  //   g_currentOut += cells[i].getCurrentOut();
-  // }
+    g_voltage    += cells[i].getVoltage();
+    g_currentIn  += cells[i].getCurrentIn();
+    g_currentOut += cells[i].getCurrentOut();
+  }
   
-    cells[NUM_CELL-1].update(); // read in new sensor for all of them
-
+    // cells[NUM_CELL-1].update(); // read in new sensor for all of them
 
     // if(cells[NUM_CELL-1].checkErrors()) { // check errors
     //   allCellsNormal = false; 
     //   SET_FLAG(mode, ERROR_FLAG);
     // }
     
-    g_voltage    += cells[NUM_CELL-1].getVoltage();
-    g_currentIn  += cells[NUM_CELL-1].getCurrentIn();
-    g_currentOut += cells[NUM_CELL-1].getCurrentOut();
+    // g_voltage    += cells[NUM_CELL-1].getVoltage();
+    // g_currentIn  += cells[NUM_CELL-1].getCurrentIn();
+    // g_currentOut += cells[NUM_CELL-1].getCurrentOut();
 
 
   if(allCellsNormal) {
