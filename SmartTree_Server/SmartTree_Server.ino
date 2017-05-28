@@ -23,7 +23,7 @@
 //#include "debug.h"
 
 
-#define NUM_CELL 1
+#define NUM_CELL 4
 
 volatile Cell cells[] = {
   Cell(0), Cell(1), Cell(2), Cell(3)
@@ -33,7 +33,6 @@ volatile Cell cells[] = {
 
 DueFlashStorage dueFlashStorage; // Due own flash storage for the energy bar
 RTC_clock rtc_clock(RC);       // Due internal RTC for counting date
-
 
 
 
@@ -57,14 +56,14 @@ void setup() {
   Serial1.begin(9600); // RS232 Screen communication interface
   
   // initScreen();        // initialize screen
-  initRTC(12,0,0,5,2,2017); // hh/mm/ss dd/mm/yr
+  initRTC(16,40,0,1,5,2017); // hh/mm/ss dd/mm/yr
   transmitClearMessage();     // initialize transmitter (reload screen background)
   
   // init BMS; 
   Cell::setup();       
   
   // TODO set priorities for ints
-  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (1000000); // trasnmit log data to the screen
+  Timer.getAvailable().attachInterrupt(setLogDataFlag).start      (100000000); // trasnmit log data to the screen
   Timer.getAvailable().attachInterrupt(setUpdateScreenFlag).start (2000000); // transmit display data to the screen
   Timer.getAvailable().attachInterrupt(globalBatteryCheck).start  (100000);  // BMS check
 
@@ -121,8 +120,9 @@ void loop() {
     // Serial.println();
     // printTime(Serial);                         // print out time
     // Serial.println();
-    // cells[logDataCurrentCell].logData(Serial); // print out cell data
-    cells[NUM_CELL-1].logData(Serial);
+
+    cells[logDataCurrentCell].logData(Serial); // print out cell data
+
     if(IS_FLAG_SET(mode, ERROR_FLAG)) {        // print out error
       cells[logDataCurrentCell].logErrors(Serial);
     }
@@ -188,6 +188,7 @@ void setLogDataFlag() {
     return;
   logDataFlag = true;
   logDataCurrentCell++;
+  Serial.println(" log data ");
   if(logDataCurrentCell == NUM_CELL) {
     logDataCurrentCell = 0;
   }

@@ -103,7 +103,7 @@ void execute() {
       break;
     case 'L':
       if(r.size() != 2) break;
-      logToFile(logFileNames[atoi(r[0])], r[1]);
+      logToFile(atoi(r[0]), r[1]);
       break;
     case 'M': // draw battery meter
       if(r.size() != 1) break;
