@@ -6,7 +6,7 @@ The repo's directory is briefly described as below:
 ### Construction Documentation
 contains the overall construction and design documentation, including hardware and software overview of the system. 
 
-###BMS Software Documentation
+### BMS Software Documentation
 contains the documentation for the battery management system software. It includes the design rationale of the software and some messaging protocal we use to communicate between the BMS board and the screen board. 
 
 ### PCB 
